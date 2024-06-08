@@ -3,8 +3,13 @@ import "./Employees.scss";
 function Employees() {
    return (
       <>
-         <a href="/">BACK</a>
-         <div>HRnet : Employees</div>
+         <main>
+            <div id="employee-div">
+               <h1>Current Employees</h1>
+               <table id="employee-table"></table>
+               <a href="/home">Home</a>
+            </div>
+         </main>
       </>
    );
 }
