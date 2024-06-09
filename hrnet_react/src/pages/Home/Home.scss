@@ -7,29 +7,59 @@ main {
    height: auto;
    left: 50%;
    transform: translate(-50%);
-   background-color: gray;
+   background-color: lightgray;
 }
-
 h1 {
    margin: 50px;
 }
-
+input,
+select,
+button {
+   height: 25px;
+   padding: 0 5px 0 5px;
+   border-radius: 5px;
+   border-width: 1px;
+   border-color: black;
+   cursor: pointer;
+}
+////////////
+// SECTION
 .CreateEmployees {
-   background-color: lightgray;
+   background-color: rgb(150, 150, 150);
    padding: 10px;
    display: flex;
    flex-direction: column;
    align-items: center;
    width: 500px;
 }
-
-fieldset {
-   display: flex;
-   flex-direction: column;
-   margin: 10px 0px;
-}
-
+///////////////
+// FORMULAIRE
 #create-employee {
    display: flex;
    flex-direction: column;
+   width: 300px;
+}
+#create-employee label,
+#create-employee legend {
+   font-weight: 600;
+}
+////////////////////
+// FIELDSET (CHAMP D'ADRESSE)
+.FieldsetAddress {
+   display: flex;
+   flex-direction: column;
+   margin: 10px 0px;
+   padding: 5px 10px 10px;
+   border-color: black;
+}
+#state,
+#department {
+   padding: 5px;
+   height: 27px;
+   border-radius: 5px;
+   border-width: 1px;
+   border-color: black;
+}
+#save-button:hover {
+   background-color: rgb(200, 255, 200);
 }
