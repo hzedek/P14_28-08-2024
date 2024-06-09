@@ -4,10 +4,8 @@ function Home() {
    return (
       <>
          <main>
-            <div>
-               <h1>HRnet</h1>
-            </div>
-            <div>
+            <h1>HRnet</h1>
+            <section className="CreateEmployees">
                <a href="/employees">View Current Employees</a>
                <h2>Create Employee</h2>
                <form action="#" id="create-employee">
@@ -50,7 +48,7 @@ function Home() {
                </form>
 
                <button>Save</button>
-            </div>
+            </section>
             <div id="confirmation">Employee Created!</div>
          </main>
       </>

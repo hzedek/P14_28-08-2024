@@ -1,12 +1,35 @@
 main {
    display: flex;
-   justify-content: center;
    align-items: center;
    flex-direction: column;
+   position: absolute;
+   width: 1000px;
+   height: auto;
+   left: 50%;
+   transform: translate(-50%);
+   background-color: gray;
 }
 
-#create-employee,
+h1 {
+   margin: 50px;
+}
+
+.CreateEmployees {
+   background-color: lightgray;
+   padding: 10px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   width: 500px;
+}
+
 fieldset {
+   display: flex;
+   flex-direction: column;
+   margin: 10px 0px;
+}
+
+#create-employee {
    display: flex;
    flex-direction: column;
 }
