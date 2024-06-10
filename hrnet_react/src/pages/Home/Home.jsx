@@ -19,10 +19,20 @@ function Home() {
                   <input type="text" id="last-name" placeholder="Lastname" />
 
                   <label htmlFor="date-of-birth">Date of Birth</label>
-                  <input type="date" id="date-of-birth" min="1924-01-01" />
+                  <input
+                     type="date"
+                     id="date-of-birth"
+                     min="1924-01-01"
+                     max="2006-06-01"
+                  />
 
                   <label htmlFor="start-date">Start Date</label>
-                  <input type="date" id="start-date" min="1950-01-01" />
+                  <input
+                     type="date"
+                     id="start-date"
+                     min="1950-01-01"
+                     max="2024-06-01"
+                  />
 
                   <fieldset className="FieldsetAddress">
                      <legend>Address</legend>
