@@ -1,5 +1,6 @@
 import "./Home.scss";
 import { states } from "../../data/states.json";
+import Calendar from "../../components/Calendar/Calendar";
 
 function Home() {
    const listStates = states;
@@ -25,6 +26,7 @@ function Home() {
                      min="1924-01-01"
                      max="2006-06-01"
                   />
+                  <Calendar />
 
                   <label htmlFor="start-date">Start Date</label>
                   <input
@@ -33,6 +35,7 @@ function Home() {
                      min="1950-01-01"
                      max="2024-06-01"
                   />
+                  <Calendar />
 
                   <fieldset className="FieldsetAddress">
                      <legend>Address</legend>
