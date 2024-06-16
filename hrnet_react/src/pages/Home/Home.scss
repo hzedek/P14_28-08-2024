@@ -43,6 +43,9 @@ button {
 #create-employee legend {
    font-weight: 600;
 }
+#create-employee ::placeholder {
+   color: black;
+}
 ////////////////////
 // FIELDSET (CHAMP D'ADRESSE)
 .FieldsetAddress {

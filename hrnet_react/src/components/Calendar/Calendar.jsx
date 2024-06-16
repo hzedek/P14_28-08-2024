@@ -1,25 +1,20 @@
 import "./Calendar.scss";
-import ReactCalendar from "react-calendar";
 import { useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
-function Calendar() {
-   const [date, setDate] = useState(new Date());
+const ReactCalendar = () => {
+   const [startDate, setStartDate] = useState(new Date());
+
    return (
       <>
-         <div style={{ backgroundColor: "lightBlue" }}>
-            <div className="app">
-               <h1 className="text-center">React Calendar</h1>
-               <div className="calendar-container">
-                  <ReactCalendar onChange={setDate} value={date} />
-               </div>
-               <p className="text-center">
-                  <span className="bold">Selected Date:</span>{" "}
-                  {date.toDateString()}
-               </p>
-            </div>
-         </div>
+         <DatePicker
+            className="HrnetEdits"
+            selected={startDate}
+            onSelect={(date) => setStartDate(date)}
+            dateFormat="dd/MM/yyyy"
+         />
       </>
    );
-}
-
-export default Calendar;
+};
+export default ReactCalendar;

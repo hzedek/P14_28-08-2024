@@ -1,0 +1,9 @@
+.HrnetEdits {
+   cursor: pointer;
+   caret-color: transparent;
+   width: calc(100% - 12px);
+}
+input ::placeholder {
+   color: red;
+   opacity: 1; /* Firefox */
+}
