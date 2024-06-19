@@ -21,9 +21,11 @@ button {
    border-width: 1px;
    border-color: black;
    cursor: pointer;
+   margin-bottom: 5px;
 }
-////////////
-// SECTION
+/////////////////////////////////////////
+/// SECTION
+/////////////////////////////////////////
 .CreateEmployees {
    background-color: rgb(150, 150, 150);
    padding: 10px;
@@ -32,8 +34,9 @@ button {
    align-items: center;
    width: 500px;
 }
-///////////////
-// FORMULAIRE
+/////////////////////////////////////////
+/// FORMULAIRE
+/////////////////////////////////////////
 #create-employee {
    display: flex;
    flex-direction: column;
@@ -46,14 +49,17 @@ button {
 #create-employee ::placeholder {
    color: black;
 }
-////////////////////
-// FIELDSET (CHAMP D'ADRESSE)
+/////////////////////////////////////////
+/// FIELDSET (CHAMP D'ADRESSE)
+/////////////////////////////////////////
 .FieldsetAddress {
    display: flex;
    flex-direction: column;
-   margin: 10px 0px;
    padding: 5px 10px 10px;
    border-color: black;
+}
+.FieldsetAddress input {
+   width: 100%;
 }
 #state,
 #department {
@@ -62,6 +68,18 @@ button {
    border-radius: 5px;
    border-width: 1px;
    border-color: black;
+}
+/////////////////////////////////////////
+/// SAVE BUTTON
+/////////////////////////////////////////
+.btn-div {
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   margin-top: 10px;
+}
+#save-button {
+   width: 100px;
 }
 #save-button:hover {
    background-color: rgb(200, 255, 200);

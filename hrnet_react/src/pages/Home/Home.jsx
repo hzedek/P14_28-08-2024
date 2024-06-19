@@ -17,6 +17,21 @@ function Home() {
    const [addressZipcode, setAddressZipcode] = useState("");
    const [department, setDepartment] = useState("");
 
+   const displayData = (e) => {
+      e.preventDefault();
+      console.log(
+         firstName,
+         lastName,
+         birthDay,
+         startDay,
+         addressStreet,
+         addressCity,
+         addressState,
+         addressZipcode,
+         department
+      );
+   };
+
    return (
       <>
          <main>
@@ -24,22 +39,7 @@ function Home() {
             <section className="CreateEmployees">
                <a href="/employees">View Current Employees</a>
                <h2>Create Employee</h2>
-               <form
-                  onSubmit={() =>
-                     console.log(
-                        firstName,
-                        lastName,
-                        birthDay,
-                        startDay,
-                        addressStreet,
-                        addressCity,
-                        addressState,
-                        addressZipcode,
-                        department
-                     )
-                  }
-                  id="create-employee"
-               >
+               <form onSubmit={(e) => displayData(e)} id="create-employee">
                   <label htmlFor="first-name">First Name</label>
                   <input
                      type="text"
@@ -130,7 +130,9 @@ function Home() {
                      <option>Human Resources</option>
                      <option>Legal</option>
                   </select>
-                  <button id="save-button">Save</button>
+                  <div className="btn-div">
+                     <button id="save-button">Save</button>
+                  </div>
                </form>
             </section>
             <div id="confirmation">Employee Created!</div>
