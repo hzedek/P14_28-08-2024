@@ -31,7 +31,6 @@ function Home() {
          [name]: value,
       });
       console.log(formValues);
-      console.log("value de formvalues", formValues.birthDay);
    };
 
    return (
@@ -46,9 +45,10 @@ function Home() {
                    * ICI, ON VA INSERER LA MODAL LORS DE L'ENVOI DU FORMULAIRE
                    */
                   // onSubmit={(e) => handleInputChange(e)}
-                  onSubmit={(e) =>
-                     console.log("FINAL BOSS: ", e.preventDefault(), formValues)
-                  }
+                  onSubmit={(e) => {
+                     e.preventDefault(),
+                        console.log("FINAL BOSS: ", formValues);
+                  }}
                   id="create-employee"
                >
                   <label htmlFor="first-name">First Name</label>
@@ -72,12 +72,9 @@ function Home() {
                   />
 
                   <label htmlFor="date-of-birth">Date of Birth</label>
-
                   <DatePicker
                      type="date"
                      className="HrnetEdits"
-                     // selected={birthDay}
-                     // value={formValues.startDay}
                      selected={formValues.birthDay}
                      onSelect={(date) =>
                         setFormValues({
@@ -87,15 +84,15 @@ function Home() {
                      }
                      dateFormat="dd/MM/yyyy"
                      name="birthDay"
+                     showMonthDropdown
+                     showYearDropdown
+                     dropdownMode="select"
                   />
 
                   <label htmlFor="start-date">Start Date</label>
-
                   <DatePicker
                      type="date"
                      className="HrnetEdits"
-                     // selected={startDay}
-                     // value={formValues.startDay}
                      selected={formValues.startDay}
                      onSelect={(date) =>
                         setFormValues({
@@ -105,11 +102,13 @@ function Home() {
                      }
                      dateFormat="dd/MM/yyyy"
                      name="startDay"
+                     showMonthDropdown
+                     showYearDropdown
+                     dropdownMode="select"
                   />
 
                   <fieldset className="FieldsetAddress">
                      <legend>Address</legend>
-
                      <label>Street</label>
                      <input
                         id="street"
@@ -117,6 +116,7 @@ function Home() {
                         placeholder="Street Name"
                         value={formValues.addressStreet}
                         onChange={handleInputChange}
+                        name="addressStreet"
                      />
 
                      <label>City</label>
@@ -126,6 +126,7 @@ function Home() {
                         placeholder="City Name"
                         value={formValues.addressCity}
                         onChange={handleInputChange}
+                        name="addressCity"
                      />
 
                      <label>State</label>
@@ -133,6 +134,7 @@ function Home() {
                         id="state"
                         value={formValues.addressState}
                         onChange={handleInputChange}
+                        name="addressState"
                      >
                         {listStates.map((state, index) => {
                            return (
@@ -152,6 +154,7 @@ function Home() {
                         max="99999"
                         value={formValues.addressZipcode}
                         onChange={handleInputChange}
+                        name="addressZipcode"
                      />
                   </fieldset>
 
@@ -160,6 +163,7 @@ function Home() {
                      id="department"
                      value={formValues.department}
                      onChange={handleInputChange}
+                     name="department"
                   >
                      <option>Sales</option>
                      <option>Marketing</option>
