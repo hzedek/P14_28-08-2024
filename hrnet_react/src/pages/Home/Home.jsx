@@ -1,4 +1,5 @@
 import "./Home.scss";
+import axios from "axios";
 import { useState } from "react";
 import { states } from "../../data/states.json";
 // import Calendar from "../../components/Calendar/Calendar";
@@ -6,6 +7,8 @@ import { states } from "../../data/states.json";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+/////////////////////////////////////////////////////////////////////////
+// INITIAL VALUES OF FORM
 const initialValues = {
    firstName: "",
    lastName: "",
@@ -17,8 +20,9 @@ const initialValues = {
    addressZipcode: "",
    department: "",
 };
-
+// LIST OF STATES (ASKED IN FORM)
 const listStates = states;
+/////////////////////////////////////////////////////////////////////////
 
 function Home() {
    const [formValues, setFormValues] = useState(initialValues);
@@ -30,7 +34,25 @@ function Home() {
          ...formValues,
          [name]: value,
       });
-      console.log(formValues);
+      // console.log(formValues);
+   };
+
+   const submitForm = () => {
+      // e.preventDefault();
+      console.log("FINAL VALUES OF FORM", formValues);
+      // await axios
+      //    .post(URL, {
+      //       prenom: formValues.firstName,
+      //       nom: formValues.lastName,
+      //    })
+      //    .then((res) => {
+      //       console.log(res.data);
+      //    });
+      // console.log("testJson", JSON.stringify(testJson));
+      axios
+         .get("formdata.json")
+         .then((res) => console.log(res.data))
+         .catch((err) => console.log(err));
    };
 
    return (
@@ -44,10 +66,10 @@ function Home() {
                   /**
                    * ICI, ON VA INSERER LA MODAL LORS DE L'ENVOI DU FORMULAIRE
                    */
-                  // onSubmit={(e) => handleInputChange(e)}
                   onSubmit={(e) => {
                      e.preventDefault(),
-                        console.log("FINAL BOSS: ", formValues);
+                        // console.log("FINAL BOSS: ", formValues);
+                        submitForm();
                   }}
                   id="create-employee"
                >
