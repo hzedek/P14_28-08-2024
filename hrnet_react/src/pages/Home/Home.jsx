@@ -71,6 +71,7 @@ function Home() {
                      value={formValues.firstName}
                      onChange={handleInputChange}
                      name="firstName"
+                     required={true}
                   />
 
                   <label htmlFor="last-name">Last Name</label>
@@ -81,6 +82,7 @@ function Home() {
                      value={formValues.lastName}
                      onChange={handleInputChange}
                      name="lastName"
+                     required={true}
                   />
 
                   <label htmlFor="date-of-birth">Date of Birth</label>
@@ -129,6 +131,7 @@ function Home() {
                         value={formValues.addressStreet}
                         onChange={handleInputChange}
                         name="addressStreet"
+                        required={true}
                      />
 
                      <label>City</label>
@@ -139,6 +142,7 @@ function Home() {
                         value={formValues.addressCity}
                         onChange={handleInputChange}
                         name="addressCity"
+                        required={true}
                      />
 
                      <label>State</label>
@@ -167,6 +171,7 @@ function Home() {
                         value={formValues.addressZipcode}
                         onChange={handleInputChange}
                         name="addressZipcode"
+                        required={true}
                      />
                   </fieldset>
 
