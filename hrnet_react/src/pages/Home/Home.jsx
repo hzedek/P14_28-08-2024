@@ -20,6 +20,16 @@ import "react-dropdown/style.css";
 const options = states.map((states) => states.name);
 // const defaultOption = options[0];
 //
+// DEPARTMENT : SETUP
+//
+const departmentCategories = [
+   "Sales",
+   "Marketing",
+   "Engineering",
+   "Human Resources",
+   "Legal",
+];
+//
 // INITIAL FORM VALUES : SETUP
 //
 const initialValues = {
@@ -33,9 +43,7 @@ const initialValues = {
    addressZipcode: "",
    department: "",
 };
-//
-// MAIN
-//
+
 function Home() {
    const [formValues, setFormValues] = useState(initialValues);
    //
@@ -161,10 +169,8 @@ function Home() {
                      <Dropdown
                         options={options}
                         value={formValues.addressState}
-                        // onChange={handleInputChange}
-                        // value={defaultOption}
                         name="addressState"
-                        placeholder={"Select a State..."}
+                        placeholder={"Select a state..."}
                         onChange={(state) =>
                            setFormValues({
                               ...formValues,
@@ -188,18 +194,18 @@ function Home() {
                   </fieldset>
                   {/* ----- DEPARTMENT ----- */}
                   <label htmlFor="department">Department</label>
-                  <select
-                     id="department"
+                  <Dropdown
+                     options={departmentCategories}
                      value={formValues.department}
-                     onChange={handleInputChange}
                      name="department"
-                  >
-                     <option>Sales</option>
-                     <option>Marketing</option>
-                     <option>Engineering</option>
-                     <option>Human Resources</option>
-                     <option>Legal</option>
-                  </select>
+                     placeholder={"Select a category..."}
+                     onChange={(department) =>
+                        setFormValues({
+                           ...formValues,
+                           ["department"]: department,
+                        })
+                     }
+                  />
                   <div className="btn-div">
                      <button id="save-button">Save</button>
                   </div>
