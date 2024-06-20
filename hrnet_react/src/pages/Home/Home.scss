@@ -22,6 +22,7 @@ button {
    border-color: black;
    cursor: pointer;
    margin-bottom: 5px;
+   font-size: 15px;
 }
 /////////////////////////////////////////
 /// SECTION
@@ -69,6 +70,7 @@ button {
    border-width: 1px;
    border-color: black;
 }
+
 /////////////////////////////////////////
 /// SAVE BUTTON
 /////////////////////////////////////////
@@ -94,3 +96,31 @@ button {
 //
 // DROPDOWN NPM
 //
+.Dropdown-root {
+   margin-bottom: 5px;
+}
+.Dropdown-control {
+   padding: 5px !important;
+   height: 27px;
+   border-radius: 5px !important;
+   display: flex;
+   align-items: center;
+   cursor: pointer !important;
+}
+.Dropdown-placeholder {
+   color: black !important;
+   font-style: italic;
+}
+.Dropdown-menu {
+   border-radius: 5px !important;
+}
+.Dropdown-arrow {
+   right: 8px !important;
+   top: 12px !important;
+}
+.Dropdown-option {
+   display: flex !important;
+   align-items: center !important;
+   height: 27px !important;
+   color: black !important;
+}

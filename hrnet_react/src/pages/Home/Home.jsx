@@ -13,12 +13,12 @@ import "react-dropdown/style.css";
 //
 // LIST OF STATES : SETUP
 //
-const listStates = states;
+// const listStates = states;
 //
 // DROPDOWN : SETUP
 //
 const options = states.map((states) => states.name);
-const defaultOption = options[0];
+// const defaultOption = options[0];
 //
 // INITIAL FORM VALUES : SETUP
 //
@@ -158,27 +158,21 @@ function Home() {
                      />
                      {/* ----- STATE ----- */}
                      <label>State</label>
-                     <select
-                        id="state"
-                        value={formValues.addressState}
-                        onChange={handleInputChange}
-                        name="addressState"
-                     >
-                        {listStates.map((state, index) => {
-                           return (
-                              <option value={index} key={index}>
-                                 {state.name}
-                              </option>
-                           );
-                        })}
-                     </select>
                      <Dropdown
                         options={options}
-                        // onChange={setChoice()}
-                        value={defaultOption}
-                        placeholder="Select an option"
+                        value={formValues.addressState}
+                        // onChange={handleInputChange}
+                        // value={defaultOption}
+                        name="addressState"
+                        placeholder={"Select a State..."}
+                        onChange={(state) =>
+                           setFormValues({
+                              ...formValues,
+                              ["addressState"]: state,
+                           })
+                        }
                      />
-                     ;{/* ----- ZIP CODE ----- */}
+                     {/* ----- ZIP CODE ----- */}
                      <label>Zip Code</label>
                      <input
                         id="zip-code"
