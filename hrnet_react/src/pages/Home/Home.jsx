@@ -1,12 +1,11 @@
 import "./Home.scss";
-import axios from "axios";
+// import axios from "axios";
 import { useState } from "react";
 import { states } from "../../data/states.json";
 // import Calendar from "../../components/Calendar/Calendar";
 // import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
 /////////////////////////////////////////////////////////////////////////
 // INITIAL VALUES OF FORM
 const initialValues = {
@@ -37,22 +36,13 @@ function Home() {
       // console.log(formValues);
    };
 
-   const submitForm = () => {
+   const submitForm = async () => {
       // e.preventDefault();
       console.log("FINAL VALUES OF FORM", formValues);
-      // await axios
-      //    .post(URL, {
-      //       prenom: formValues.firstName,
-      //       nom: formValues.lastName,
-      //    })
-      //    .then((res) => {
-      //       console.log(res.data);
-      //    });
-      // console.log("testJson", JSON.stringify(testJson));
-      axios
-         .get("formdata.json")
-         .then((res) => console.log(res.data))
-         .catch((err) => console.log(err));
+      localStorage.setItem(
+         `${formValues.firstName}`,
+         JSON.stringify(formValues)
+      );
    };
 
    return (
