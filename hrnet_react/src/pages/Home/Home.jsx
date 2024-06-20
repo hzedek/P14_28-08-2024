@@ -1,13 +1,27 @@
-import "./Home.scss";
+/////////////////////////////////////////////////////////////////////////
 // import axios from "axios";
+import "./Home.scss";
 import { useState } from "react";
 import { states } from "../../data/states.json";
-// import Calendar from "../../components/Calendar/Calendar";
-// import { useState } from "react";
+// DATEPICKER
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+// DROPDOWN
+import Dropdown from "react-dropdown";
+import "react-dropdown/style.css";
 /////////////////////////////////////////////////////////////////////////
-// INITIAL VALUES OF FORM
+//
+// LIST OF STATES : SETUP
+//
+const listStates = states;
+//
+// DROPDOWN : SETUP
+//
+const options = states.map((states) => states.name);
+const defaultOption = options[0];
+//
+// INITIAL FORM VALUES : SETUP
+//
 const initialValues = {
    firstName: "",
    lastName: "",
@@ -19,13 +33,14 @@ const initialValues = {
    addressZipcode: "",
    department: "",
 };
-// LIST OF STATES (ASKED IN FORM)
-const listStates = states;
-/////////////////////////////////////////////////////////////////////////
-
+//
+// MAIN
+//
 function Home() {
    const [formValues, setFormValues] = useState(initialValues);
-
+   //
+   // EDIT FORM VALUES ONCHANGE()
+   //
    const handleInputChange = (e) => {
       e.preventDefault();
       const { name, value } = e.target;
@@ -33,11 +48,11 @@ function Home() {
          ...formValues,
          [name]: value,
       });
-      // console.log(formValues);
    };
-
-   const submitForm = async () => {
-      // e.preventDefault();
+   //
+   // ENVOI DU FORMULAIRE + SETUP LOCALSTORAGE
+   //
+   const submitForm = () => {
       console.log("FINAL VALUES OF FORM", formValues);
       localStorage.setItem(
          `${formValues.firstName}`,
@@ -53,16 +68,12 @@ function Home() {
                <a href="/employees">View Current Employees</a>
                <h2>Create Employee</h2>
                <form
-                  /**
-                   * ICI, ON VA INSERER LA MODAL LORS DE L'ENVOI DU FORMULAIRE
-                   */
                   onSubmit={(e) => {
-                     e.preventDefault(),
-                        // console.log("FINAL BOSS: ", formValues);
-                        submitForm();
+                     e.preventDefault(), submitForm();
                   }}
                   id="create-employee"
                >
+                  {/* ----- FIRST NAME ----- */}
                   <label htmlFor="first-name">First Name</label>
                   <input
                      type="text"
@@ -73,7 +84,7 @@ function Home() {
                      name="firstName"
                      required={true}
                   />
-
+                  {/* ----- LAST NAME ----- */}
                   <label htmlFor="last-name">Last Name</label>
                   <input
                      type="text"
@@ -84,7 +95,7 @@ function Home() {
                      name="lastName"
                      required={true}
                   />
-
+                  {/* ----- BIRTH DAY ----- */}
                   <label htmlFor="date-of-birth">Date of Birth</label>
                   <DatePicker
                      type="date"
@@ -102,7 +113,7 @@ function Home() {
                      showYearDropdown
                      dropdownMode="select"
                   />
-
+                  {/* ----- START DATE ----- */}
                   <label htmlFor="start-date">Start Date</label>
                   <DatePicker
                      type="date"
@@ -120,9 +131,10 @@ function Home() {
                      showYearDropdown
                      dropdownMode="select"
                   />
-
+                  {/* --------------- FIELDSET PART --------------- */}
                   <fieldset className="FieldsetAddress">
                      <legend>Address</legend>
+                     {/* ----- STREET ----- */}
                      <label>Street</label>
                      <input
                         id="street"
@@ -133,7 +145,7 @@ function Home() {
                         name="addressStreet"
                         required={true}
                      />
-
+                     {/* ----- CITY ----- */}
                      <label>City</label>
                      <input
                         id="city"
@@ -144,7 +156,7 @@ function Home() {
                         name="addressCity"
                         required={true}
                      />
-
+                     {/* ----- STATE ----- */}
                      <label>State</label>
                      <select
                         id="state"
@@ -160,7 +172,13 @@ function Home() {
                            );
                         })}
                      </select>
-
+                     <Dropdown
+                        options={options}
+                        // onChange={setChoice()}
+                        value={defaultOption}
+                        placeholder="Select an option"
+                     />
+                     ;{/* ----- ZIP CODE ----- */}
                      <label>Zip Code</label>
                      <input
                         id="zip-code"
@@ -174,7 +192,7 @@ function Home() {
                         required={true}
                      />
                   </fieldset>
-
+                  {/* ----- DEPARTMENT ----- */}
                   <label htmlFor="department">Department</label>
                   <select
                      id="department"
