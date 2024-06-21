@@ -71,147 +71,149 @@ function Home() {
    return (
       <>
          <main>
-            <h1>HRnet</h1>
-            <section className="CreateEmployees">
+            <div className="Interface">
                <a href="/employees">View Current Employees</a>
-               <h2>Create Employee</h2>
-               <form
-                  onSubmit={(e) => {
-                     e.preventDefault(), submitForm();
-                  }}
-                  id="create-employee"
-               >
-                  {/* ----- FIRST NAME ----- */}
-                  <label htmlFor="first-name">First Name</label>
-                  <input
-                     type="text"
-                     id="first-name"
-                     placeholder="Firstname"
-                     value={formValues.firstName}
-                     onChange={handleInputChange}
-                     name="firstName"
-                     required={true}
-                  />
-                  {/* ----- LAST NAME ----- */}
-                  <label htmlFor="last-name">Last Name</label>
-                  <input
-                     type="text"
-                     id="last-name"
-                     placeholder="Lastname"
-                     value={formValues.lastName}
-                     onChange={handleInputChange}
-                     name="lastName"
-                     required={true}
-                  />
-                  {/* ----- BIRTH DAY ----- */}
-                  <label htmlFor="date-of-birth">Date of Birth</label>
-                  <DatePicker
-                     type="date"
-                     className="HrnetEdits"
-                     selected={formValues.birthDay}
-                     onSelect={(date) =>
-                        setFormValues({
-                           ...formValues,
-                           ["birthDay"]: date,
-                        })
-                     }
-                     dateFormat="dd/MM/yyyy"
-                     name="birthDay"
-                     showMonthDropdown
-                     showYearDropdown
-                     dropdownMode="select"
-                  />
-                  {/* ----- START DATE ----- */}
-                  <label htmlFor="start-date">Start Date</label>
-                  <DatePicker
-                     type="date"
-                     className="HrnetEdits"
-                     selected={formValues.startDay}
-                     onSelect={(date) =>
-                        setFormValues({
-                           ...formValues,
-                           ["startDay"]: date,
-                        })
-                     }
-                     dateFormat="dd/MM/yyyy"
-                     name="startDay"
-                     showMonthDropdown
-                     showYearDropdown
-                     dropdownMode="select"
-                  />
-                  {/* --------------- FIELDSET PART --------------- */}
-                  <fieldset className="FieldsetAddress">
-                     <legend>Address</legend>
-                     {/* ----- STREET ----- */}
-                     <label>Street</label>
+               <h1>HRnet</h1>
+               <section className="CreateEmployees">
+                  <h2>Create Employee</h2>
+                  <form
+                     onSubmit={(e) => {
+                        e.preventDefault(), submitForm();
+                     }}
+                     id="create-employee"
+                  >
+                     {/* ----- FIRST NAME ----- */}
+                     <label htmlFor="first-name">First Name</label>
                      <input
-                        id="street"
                         type="text"
-                        placeholder="Street Name"
-                        value={formValues.addressStreet}
+                        id="first-name"
+                        placeholder="Firstname"
+                        value={formValues.firstName}
                         onChange={handleInputChange}
-                        name="addressStreet"
+                        name="firstName"
                         required={true}
                      />
-                     {/* ----- CITY ----- */}
-                     <label>City</label>
+                     {/* ----- LAST NAME ----- */}
+                     <label htmlFor="last-name">Last Name</label>
                      <input
-                        id="city"
                         type="text"
-                        placeholder="City Name"
-                        value={formValues.addressCity}
+                        id="last-name"
+                        placeholder="Lastname"
+                        value={formValues.lastName}
                         onChange={handleInputChange}
-                        name="addressCity"
+                        name="lastName"
                         required={true}
                      />
-                     {/* ----- STATE ----- */}
-                     <label>State</label>
-                     <Dropdown
-                        options={options}
-                        value={formValues.addressState}
-                        name="addressState"
-                        placeholder={"Select a state..."}
-                        onChange={(state) =>
+                     {/* ----- BIRTH DAY ----- */}
+                     <label htmlFor="date-of-birth">Date of Birth</label>
+                     <DatePicker
+                        type="date"
+                        className="HrnetEdits"
+                        selected={formValues.birthDay}
+                        onSelect={(date) =>
                            setFormValues({
                               ...formValues,
-                              ["addressState"]: state,
+                              ["birthDay"]: date,
+                           })
+                        }
+                        dateFormat="dd/MM/yyyy"
+                        name="birthDay"
+                        showMonthDropdown
+                        showYearDropdown
+                        dropdownMode="select"
+                     />
+                     {/* ----- START DATE ----- */}
+                     <label htmlFor="start-date">Start Date</label>
+                     <DatePicker
+                        type="date"
+                        className="HrnetEdits"
+                        selected={formValues.startDay}
+                        onSelect={(date) =>
+                           setFormValues({
+                              ...formValues,
+                              ["startDay"]: date,
+                           })
+                        }
+                        dateFormat="dd/MM/yyyy"
+                        name="startDay"
+                        showMonthDropdown
+                        showYearDropdown
+                        dropdownMode="select"
+                     />
+                     {/* --------------- FIELDSET PART --------------- */}
+                     <fieldset className="FieldsetAddress">
+                        <legend>Address</legend>
+                        {/* ----- STREET ----- */}
+                        <label>Street</label>
+                        <input
+                           id="street"
+                           type="text"
+                           placeholder="Street Name"
+                           value={formValues.addressStreet}
+                           onChange={handleInputChange}
+                           name="addressStreet"
+                           required={true}
+                        />
+                        {/* ----- CITY ----- */}
+                        <label>City</label>
+                        <input
+                           id="city"
+                           type="text"
+                           placeholder="City Name"
+                           value={formValues.addressCity}
+                           onChange={handleInputChange}
+                           name="addressCity"
+                           required={true}
+                        />
+                        {/* ----- STATE ----- */}
+                        <label>State</label>
+                        <Dropdown
+                           options={options}
+                           value={formValues.addressState}
+                           name="addressState"
+                           placeholder={"Select a state..."}
+                           onChange={(state) =>
+                              setFormValues({
+                                 ...formValues,
+                                 ["addressState"]: state,
+                              })
+                           }
+                        />
+                        {/* ----- ZIP CODE ----- */}
+                        <label>Zip Code</label>
+                        <input
+                           id="zip-code"
+                           type="number"
+                           placeholder="Zip Code Number"
+                           min="1"
+                           max="99999"
+                           value={formValues.addressZipcode}
+                           onChange={handleInputChange}
+                           name="addressZipcode"
+                           required={true}
+                        />
+                     </fieldset>
+                     {/* ----- DEPARTMENT ----- */}
+                     <label htmlFor="department">Department</label>
+                     <Dropdown
+                        options={departmentCategories}
+                        value={formValues.department}
+                        name="department"
+                        placeholder={"Select a category..."}
+                        onChange={(department) =>
+                           setFormValues({
+                              ...formValues,
+                              ["department"]: department,
                            })
                         }
                      />
-                     {/* ----- ZIP CODE ----- */}
-                     <label>Zip Code</label>
-                     <input
-                        id="zip-code"
-                        type="number"
-                        placeholder="Zip Code Number"
-                        min="1"
-                        max="99999"
-                        value={formValues.addressZipcode}
-                        onChange={handleInputChange}
-                        name="addressZipcode"
-                        required={true}
-                     />
-                  </fieldset>
-                  {/* ----- DEPARTMENT ----- */}
-                  <label htmlFor="department">Department</label>
-                  <Dropdown
-                     options={departmentCategories}
-                     value={formValues.department}
-                     name="department"
-                     placeholder={"Select a category..."}
-                     onChange={(department) =>
-                        setFormValues({
-                           ...formValues,
-                           ["department"]: department,
-                        })
-                     }
-                  />
-                  <div className="btn-div">
-                     <button id="save-button">Save</button>
-                  </div>
-               </form>
-            </section>
-            <div id="confirmation">Employee Created!</div>
+                     <div className="btn-div">
+                        <button id="save-button">Save</button>
+                     </div>
+                  </form>
+               </section>
+               <div id="confirmation">Employee Created!</div>
+            </div>
          </main>
       </>
    );

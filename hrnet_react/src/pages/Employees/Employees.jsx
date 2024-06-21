@@ -6,6 +6,7 @@ import "gridjs/dist/theme/mermaid.css";
 function Employees() {
    const row = () => ["louis", "louis@mail.fr"];
    const [data, setData] = useState([row()]);
+
    const update = () => {
       setData(data.slice(0).concat([row()]));
    };
@@ -13,7 +14,7 @@ function Employees() {
    return (
       <>
          <main>
-            <div id="employee-div">
+            <div className="Interface">
                <a href="/">Home</a>
                <h1>Current Employees</h1>
                <button
@@ -24,14 +25,25 @@ function Employees() {
                >
                   Add record
                </button>
-
-               <Grid
-                  data={data}
-                  columns={["Name", "Email"]}
-                  pagination={{
-                     limit: 10,
-                  }}
-               />
+               <span className="employees-grid">
+                  <Grid
+                     data={data}
+                     columns={[
+                        "First Name",
+                        "Last Name",
+                        "Start Day",
+                        "Department",
+                        "Date of Birth",
+                        "Street",
+                        "City",
+                        "State",
+                        "Zip Code",
+                     ]}
+                     pagination={{
+                        limit: 10,
+                     }}
+                  />
+               </span>
             </div>
          </main>
       </>
