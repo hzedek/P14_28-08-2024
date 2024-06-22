@@ -10,6 +10,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 /////////////////////////////////////////////////////////////////////////
+import Modal, { openModal, closeModal } from "../../components/Modal/Modal";
+/////////////////////////////////////////////////////////////////////////
 //
 // DROPDOWN : SETUP
 //
@@ -64,23 +66,24 @@ function Home() {
          JSON.stringify(formValues)
       );
    };
-   //
+   ///////////////////////////////////////////////////////////////////////////
    // MODAL
    //
-   function openModal() {
-      document.getElementById("validationModal").style.display = "block";
-   }
-   function closeModal() {
-      document.getElementById("validationModal").style.display = "none";
-   }
+   // function openModal() {
+   //    document.getElementById("validationModal").style.display = "block";
+   // }
+   // function closeModal() {
+   //    document.getElementById("validationModal").style.display = "none";
+   // }
 
    return (
       <>
          <main>
-            <div id="validationModal">
+            {/* <div id="validationModal">
                <button id="closeValidationModal" onClick={closeModal}></button>
                <div id="confirmation">Employee Created !</div>
-            </div>
+            </div> */}
+            <Modal />
             <div className="Interface">
                <a href="/employees">View Current Employees</a>
                <h1>HRnet</h1>
