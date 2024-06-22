@@ -75,7 +75,7 @@ function Home() {
                <a href="/employees">View Current Employees</a>
                <h1>HRnet</h1>
                <section className="CreateEmployees">
-                  <h2>Create Employee</h2>
+                  <h2 className="CreateEmployee">Create Employee</h2>
                   <form
                      onSubmit={(e) => {
                         e.preventDefault(), submitForm();
@@ -117,10 +117,12 @@ function Home() {
                            })
                         }
                         dateFormat="dd/MM/yyyy"
+                        format="dd-MM-y"
                         name="birthDay"
                         showMonthDropdown
                         showYearDropdown
                         dropdownMode="select"
+                        maxDetail="year"
                      />
                      {/* ----- START DATE ----- */}
                      <label htmlFor="start-date">Start Date</label>
@@ -135,10 +137,12 @@ function Home() {
                            })
                         }
                         dateFormat="dd/MM/yyyy"
+                        format="dd-MM-y"
                         name="startDay"
                         showMonthDropdown
                         showYearDropdown
                         dropdownMode="select"
+                        maxDetail="year"
                      />
                      {/* --------------- FIELDSET PART --------------- */}
                      <fieldset className="FieldsetAddress">

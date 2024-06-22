@@ -11,30 +11,27 @@ function Employees() {
    };
 
    const [importedLocal, setImportedLocal] = useState([]);
+   ///////////////////////////////////////////////////////////////////////////////////////////////
+   // useEffect(() => {
+   //    const localData = { ...localStorage };
+   //    for (let i = 0; i < localStorage.length; i++) {
+   //       let result = JSON.parse(localStorage.getItem(localStorage.key(i)));
+   //       console.log("RESULT", i + 1, result);
+   //       console.log("LOCAL", localData);
 
-   useEffect(() => {
-      const storage = { ...localStorage };
-      // console.log(localStorage.key(index));
-      // console.log({ ...localStorage });
-      // console.log(storage);
-      // setImportedLocal(storage);
-      // console.log("imported test", importedLocal);
-      setImportedLocal([...importedLocal, storage]);
-      console.log(importedLocal);
-   }, []);
-
-   for (let i = 0; i < localStorage.length; i++) {
-      let result;
-      result = JSON.parse(localStorage.getItem(localStorage.key(i)));
-      // console.log(localStorage.getItem(localStorage.key(i)));
-      if (result.firstName === "Louis") {
-         console.log("YESS LOUIS");
-      } else {
-         console.log("eh bah non pas Louis");
-      }
-      // console.log(JSON.parse(result));
-      console.log(result);
+   //       if (result.firstName) {
+   //          setImportedLocal([...importedLocal, result]);
+   //          // console.log(result.firstName, result.lastName);
+   //       }
+   //    }
+   //    console.log("-------------------------------------------------");
+   // }, []);
+   ///////////////////////////////////////////////////////////////////////////////////////////////
+   for (let [key, value] of Object.entries(localStorage)) {
+      console.log(`${key}: ${value}`);
    }
+   console.log("-------------------------------------------------");
+   // console.log("FINAL RESULT === ", importedLocal);
 
    return (
       <>
