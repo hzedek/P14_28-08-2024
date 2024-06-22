@@ -11,14 +11,10 @@ import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 /////////////////////////////////////////////////////////////////////////
 //
-// LIST OF STATES : SETUP
-//
-// const listStates = states;
-//
 // DROPDOWN : SETUP
 //
-const options = states.map((states) => states.name);
-// const defaultOption = options[0];
+const options = states.map((states) => states.name); // const defaultOption = options[0];
+/////////////////////////////////////////////////////////////////////////
 //
 // DEPARTMENT : SETUP
 //
@@ -29,6 +25,7 @@ const departmentCategories = [
    "Human Resources",
    "Legal",
 ];
+/////////////////////////////////////////////////////////////////////////
 //
 // INITIAL FORM VALUES : SETUP
 //
@@ -67,10 +64,23 @@ function Home() {
          JSON.stringify(formValues)
       );
    };
+   //
+   // MODAL
+   //
+   function openModal() {
+      document.getElementById("validationModal").style.display = "block";
+   }
+   function closeModal() {
+      document.getElementById("validationModal").style.display = "none";
+   }
 
    return (
       <>
          <main>
+            <div id="validationModal">
+               <button id="closeValidationModal" onClick={closeModal}></button>
+               <div id="confirmation">Employee Created !</div>
+            </div>
             <div className="Interface">
                <a href="/employees">View Current Employees</a>
                <h1>HRnet</h1>
@@ -78,7 +88,7 @@ function Home() {
                   <h2 className="CreateEmployee">Create Employee</h2>
                   <form
                      onSubmit={(e) => {
-                        e.preventDefault(), submitForm();
+                        e.preventDefault(), submitForm(), openModal();
                      }}
                      id="create-employee"
                   >
@@ -176,6 +186,7 @@ function Home() {
                            value={formValues.addressState}
                            name="addressState"
                            placeholder={"Select a state..."}
+                           required={true}
                            onChange={(state) =>
                               setFormValues({
                                  ...formValues,
@@ -204,6 +215,7 @@ function Home() {
                         value={formValues.department}
                         name="department"
                         placeholder={"Select a category..."}
+                        required={true}
                         onChange={(department) =>
                            setFormValues({
                               ...formValues,
@@ -216,7 +228,6 @@ function Home() {
                      </div>
                   </form>
                </section>
-               <div id="confirmation">Employee Created!</div>
             </div>
          </main>
       </>
