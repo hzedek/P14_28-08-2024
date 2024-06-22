@@ -85,7 +85,7 @@ function Home() {
                <a href="/employees">View Current Employees</a>
                <h1>HRnet</h1>
                <section className="CreateEmployees">
-                  <h2 className="CreateEmployee">Create Employee</h2>
+                  <h2 className="CreateEmployeeTitle">Create Employee</h2>
                   <form
                      onSubmit={(e) => {
                         e.preventDefault(), submitForm(), openModal();
