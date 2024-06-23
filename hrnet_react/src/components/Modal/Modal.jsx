@@ -6,6 +6,9 @@ export function openModal() {
 export function closeModal() {
    document.getElementById("validationModal").style.display = "none";
 }
+
+// EDIT DEPUIS JS LE CSS
+
 function Modal() {
    return (
       <>
