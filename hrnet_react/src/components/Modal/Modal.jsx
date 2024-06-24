@@ -1,22 +1,22 @@
-import "./Modal.scss";
+// import "./Modal.scss";
 
-export function openModal() {
-   document.getElementById("validationModal").style.display = "block";
-}
-export function closeModal() {
-   document.getElementById("validationModal").style.display = "none";
-}
+// export function openModal() {
+//    document.getElementById("validationModal").style.display = "block";
+// }
+// export function closeModal() {
+//    document.getElementById("validationModal").style.display = "none";
+// }
 
-// EDIT DEPUIS JS LE CSS
+// // EDIT DEPUIS JS LE CSS
 
-function Modal() {
-   return (
-      <>
-         <div id="validationModal">
-            <button id="closeValidationModal" onClick={closeModal}></button>
-            <div id="confirmation">Employee Created !</div>
-         </div>
-      </>
-   );
-}
-export default Modal;
+// function Modal() {
+//    return (
+//       <>
+//          <div id="validationModal">
+//             <button id="closeValidationModal" onClick={closeModal}></button>
+//             <div id="confirmation">Employee Created !</div>
+//          </div>
+//       </>
+//    );
+// }
+// export default Modal;

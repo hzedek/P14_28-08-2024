@@ -10,8 +10,9 @@ import "react-datepicker/dist/react-datepicker.css";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 /////////////////////////////////////////////////////////////////////////
-import Modal, { openModal, closeModal } from "../../components/Modal/Modal";
+// import Modal, { openModal, closeModal } from "../../components/Modal/Modal";
 /////////////////////////////////////////////////////////////////////////
+import Modal, { openModal } from "lewismodal";
 //
 // DROPDOWN : SETUP
 //
