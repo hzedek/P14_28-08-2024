@@ -7,11 +7,20 @@ import HumanRessources from "../../../src/data/formdata.json";
 function Employees() {
    return (
       <>
+         <header id="WHealth-Header">
+            <div id="WHealth-Logo-Container_Employees">
+               <img
+                  id="WHealth-Logo"
+                  src="./src/assets/WHealthLogoEdited.png"
+                  alt="Logo WealthHealth"
+               />
+            </div>
+            <a id="WHealth-LinkBtn" href="/">
+               Home
+            </a>
+         </header>
          <main>
             <div className="Interface">
-               <a id="WHealth-Link-Btn" href="/">
-                  Home
-               </a>
                <h1>Employees</h1>
                <span className="employees-grid">
                   <Grid

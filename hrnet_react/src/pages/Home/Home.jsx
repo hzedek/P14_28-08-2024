@@ -98,11 +98,11 @@ function Home() {
                   alt="Logo WealthHealth"
                />
             </div>
-            <a id="WHealth-Link-Btn" href="/employees">
+            <a id="WHealth-LinkBtn" href="/employees">
                View Current Employees
             </a>
 
-            <section className="CreateEmployees">
+            <section className="WHealth-FormSection">
                <h2 className="CreateEmployeeTitle">Create Employee</h2>
                <form
                   onSubmit={(e) => {
