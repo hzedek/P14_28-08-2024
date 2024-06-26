@@ -11,7 +11,29 @@
    border-color: rgb(50, 50, 0);
 }
 
-.employees-grid {
-   max-width: 1500px;
-   padding: 10px;
+@media (min-width: 1024px) {
+   .WHealth-Title {
+      margin: 5px;
+   }
+   main,
+   .WHealth-GridSection {
+      width: 1024px;
+   }
+   .employees-grid {
+      width: 1024px;
+      padding: 5px;
+   }
+}
+@media (min-width: 1440px) {
+   .WHealth-Title {
+      margin: 5px;
+   }
+   main,
+   .WHealth-GridSection {
+      width: 1400px;
+   }
+   .employees-grid {
+      width: 1400px;
+      padding: 10px;
+   }
 }

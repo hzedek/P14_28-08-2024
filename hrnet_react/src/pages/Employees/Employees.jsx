@@ -37,7 +37,7 @@ function Employees() {
                         "Zip Code",
                      ]}
                      pagination={{
-                        limit: 5,
+                        limit: 7,
                      }}
                   />
                </span>

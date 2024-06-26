@@ -1,5 +1,5 @@
 import "./Home.scss";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { states } from "../../data/states.json";
 // DATEPICKER
 import DatePicker from "react-datepicker";
@@ -7,14 +7,20 @@ import "react-datepicker/dist/react-datepicker.css";
 // DROPDOWN
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
-/////////////////////////////////////////////////////////////////////////////////////////
-// MODAL FROM NPM (LEWISMODAL)
-//
+/////////////////////////////////////////////////////////////////////////////////
+// NPM LEWISMODAL : IMPORT
 // import Modal, { openModal, closeModal } from "../../components/Modal/Modal";
 // import Modal, { openModal } from "lewismodal";
-/////////////////////////////////////////////////////////////////////////////////////////
-// DROPDOWN : SETUP
-const options = states.map((states) => states.name); // const defaultOption = options[0];
+//
+//
+// FUNCTIONS OPEN/CLOSE MODAL
+// function openModal() {
+//    document.getElementById("validationModal").style.display = "block";
+// }
+// function closeModal() {
+//    document.getElementById("validationModal").style.display = "none";
+// }
+/////////////////////////////////////////////////////////////////////////////////
 // DEPARTMENT : SETUP
 const departmentCategories = [
    "Sales",
@@ -48,7 +54,7 @@ function Home() {
          [name]: value,
       });
    };
-   // ENVOI DU FORMULAIRE + SETUP LOCALSTORAGE
+   // ENVOI DU FORMULAIRE VIA SETUP EN LOCALSTORAGE
    const submitForm = () => {
       console.log("FINAL VALUES OF FORM", formValues);
       localStorage.setItem(
@@ -56,26 +62,6 @@ function Home() {
          JSON.stringify(formValues)
       );
    };
-   ///////////////////////////////////////////////////////////////////////////
-   // NPM LEWIS MODAL
-   //
-   // function openModal() {
-   //    document.getElementById("validationModal").style.display = "block";
-   // }
-   // function closeModal() {
-   //    document.getElementById("validationModal").style.display = "none";
-   // }
-   ///////////////////////////////////////////////////////////////////////////
-   useEffect(() => {
-      document.getElementsByClassName("is-open").classList.remove("is-open");
-   });
-
-   // document.body.addEventListener("click", () =>
-   //    // alert("this is the body mate")
-   //    document
-   //       .getElementsByClassName("Dropdown-root")
-   //       .classList.remove("is-open")
-   // );
 
    return (
       <>
@@ -144,7 +130,7 @@ function Home() {
                   <label htmlFor="date-of-birth">Date of Birth</label>
                   <DatePicker
                      type="date"
-                     className="HrnetEdits"
+                     className="HrnetDatePickers"
                      selected={formValues.birthDay}
                      onSelect={(date) =>
                         setFormValues({
@@ -164,7 +150,7 @@ function Home() {
                   <label htmlFor="start-date">Start Date</label>
                   <DatePicker
                      type="date"
-                     className="HrnetEdits"
+                     className="HrnetDatePickers"
                      selected={formValues.startDay}
                      onSelect={(date) =>
                         setFormValues({
@@ -184,7 +170,7 @@ function Home() {
                   <fieldset className="FieldsetAddress">
                      <legend>Address</legend>
                      {/* ----- STREET ----- */}
-                     <label>Street</label>
+                     <label id="streeLabel">Street</label>
                      <input
                         id="street"
                         type="text"
@@ -209,17 +195,22 @@ function Home() {
                      <label>State</label>
                      <Dropdown
                         className="HrnetDropdown"
-                        options={options}
+                        options={states.map((state, index) => [
+                           (state.value = index),
+                           state.name,
+                        ])}
                         value={formValues.addressState}
                         name="addressState"
                         placeholder={"Select a state..."}
                         required={true}
-                        onChange={(state) =>
+                        // ICI, ON RECUPERE L'INDEX DE L'ETAT AVANT D'EN PRENDRE SON ABBREVIATION
+                        onChange={(state) => {
                            setFormValues({
                               ...formValues,
-                              ["addressState"]: state,
-                           })
-                        }
+                              ["addressState"]:
+                                 states[state.value[0]].abbreviation,
+                           });
+                        }}
                      />
                      {/* ----- ZIP CODE ----- */}
                      <label>Zip Code</label>
@@ -256,7 +247,6 @@ function Home() {
                   </div>
                </form>
             </section>
-            {/* </div> */}
          </main>
       </>
    );

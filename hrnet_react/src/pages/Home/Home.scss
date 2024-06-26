@@ -14,13 +14,13 @@ main {
    flex-direction: column;
    position: absolute;
    min-width: 100%;
-   min-height: 100%;
+   min-height: calc(100% - 134px);
    left: 50%;
    transform: translate(-50%);
    background-color: rgb(105 150 30);
    padding: 10px;
 }
-////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 // HEADER
 #WHealth-Header {
    display: flex;
@@ -60,14 +60,15 @@ main {
    border-color: rgb(50, 50, 0);
    border-width: 1px;
 }
+////////////////////////////////////////////////////////////////////////////////
 // WEALTHHEALTH FORM SECTION
 .WHealth-FormSection {
    display: flex;
    flex-direction: column;
    align-items: center;
-   background-color: rgba(215, 235, 180);
+   background-color: rgb(230, 245, 200);
    padding: 10px;
-   width: 500px;
+   width: 600px;
    border-radius: 10px;
    border-style: solid;
    border-width: 1px;
@@ -104,9 +105,10 @@ legend {
    font-size: 16px;
    margin-top: 5px;
 }
-
-///////////////////////////////////////////////////////////////////
-// INPUTS STYLE
+#streeLabel {
+   margin: 0px !important;
+}
+// WEALTHHEALTH INPUTS / SELECTS / BUTTONS
 input,
 select,
 button {
@@ -117,18 +119,9 @@ button {
    border-color: black;
    border-style: solid;
    cursor: pointer;
-   // margin-bottom: 10px;
    font-size: 15px;
 }
-
-///////////////////////////////////////////////////////////////////
-// PLUGIN : DROPDOWN MENU
-.Dropdown-root {
-   margin-bottom: 0px !important;
-}
-.Dropdown-control {
-   border-color: black !important;
-}
+////////////////////////////////////////////////////////////////////////////////
 // WEALTHHEALTH FIELDSET
 .FieldsetAddress {
    display: flex;
@@ -142,8 +135,40 @@ button {
 }
 .FieldsetAddress input {
    width: 100%;
-   // margin-bottom: 5px;
 }
+/// WEALTHHEALTH SAVE BUTTON
+.btn-div {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
+   margin-top: 20px;
+   margin-bottom: 10px;
+}
+#save-button {
+   display: flex;
+   justify-content: center;
+   width: 70%;
+   height: 100%;
+   display: flex;
+   font-weight: 600;
+   font-size: 16px;
+   background-color: rgb(105, 150, 30);
+   padding: 10px;
+}
+#save-button:hover {
+   background-color: chartreuse;
+}
+////////////////////////////////////////////////////////////////////////////////
+// WEALTHHEALTH PLUGINS : DATE PICKER
+.HrnetDatePickers {
+   cursor: pointer;
+   caret-color: transparent;
+   width: 100%;
+   font-style: italic;
+   color: black;
+}
+// WEALTHHEALTH PLUGINS : DROPDOWN MENU
 #state,
 #department {
    padding: 5px;
@@ -152,51 +177,21 @@ button {
    border-width: 1px;
    border-color: black;
 }
-
-/////////////////////////////////////////
-/// SAVE BUTTON
-/////////////////////////////////////////
-.btn-div {
-   width: 100%;
-   display: flex;
-   justify-content: center;
-   margin-top: 10px;
-}
-#save-button {
-   margin-top: 10px;
-   width: 100px;
-   font-weight: 600;
-   background-color: aquamarine;
-}
-#save-button:hover {
-   background-color: chartreuse;
-}
-
-.HrnetEdits {
-   cursor: pointer;
-   caret-color: transparent;
-   width: 100%;
-   font-style: italic;
-   color: black;
-}
-
-//
-// DROPDOWN NPM
-//
 .Dropdown-root {
-   margin-bottom: 5px;
+   margin-bottom: 0px !important;
 }
 .Dropdown-control {
+   border-color: black !important;
    padding: 5px !important;
-   height: 27px;
+   height: 27px !important;
    border-radius: 5px !important;
-   display: flex;
-   align-items: center;
+   display: flex !important;
+   align-items: center !important;
    cursor: pointer !important;
 }
 .Dropdown-placeholder {
    color: black !important;
-   font-style: italic;
+   font-style: italic !important;
 }
 .Dropdown-menu {
    border-radius: 5px !important;
