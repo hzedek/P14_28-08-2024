@@ -1,23 +1,17 @@
-#WHealth-Header {
+.WHealth-GridSection {
    display: flex;
-   justify-content: center;
-   width: 100%;
-   // background-color: rgb(81, 255, 0);
-   background-color: rgb(115, 133, 43);
+   flex-direction: column;
+   align-items: center;
+   background-color: rgba(215, 235, 180);
+   padding: 10px;
+   width: auto;
+   border-radius: 10px;
    border-style: solid;
-   border-color: black;
-   border-width: 0px 0px 1px 0px;
+   border-width: 1px;
+   border-color: rgb(50, 50, 0);
 }
-#WHealth-Logo-Container_Employees {
-   margin: 5px;
-   width: 100%;
-   display: flex;
-   justify-content: center;
-}
-#WHealth-Logo-Container_Employees #WHealth-Logo {
-   width: 75px;
-   height: 75px;
-}
+
 .employees-grid {
-   padding: 0px 25px;
+   max-width: 1500px;
+   padding: 10px;
 }

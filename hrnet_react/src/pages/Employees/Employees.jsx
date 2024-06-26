@@ -1,7 +1,6 @@
 import "./Employees.scss";
 import { Grid } from "gridjs-react";
 import "gridjs/dist/theme/mermaid.css";
-// import HumanRessources from "../../../public/formdata.json";
 import HumanRessources from "../../../src/data/formdata.json";
 
 function Employees() {
@@ -13,6 +12,7 @@ function Employees() {
                   id="WHealth-Logo"
                   src="./src/assets/WHealthLogoEdited.png"
                   alt="Logo WealthHealth"
+                  onClick={() => (location.href = "/")}
                />
             </div>
             <a id="WHealth-LinkBtn" href="/">
@@ -20,8 +20,8 @@ function Employees() {
             </a>
          </header>
          <main>
-            <div className="Interface">
-               <h1>Employees</h1>
+            <section className="WHealth-GridSection">
+               <h1 className="WHealth-Title">Employees</h1>
                <span className="employees-grid">
                   <Grid
                      data={HumanRessources}
@@ -37,11 +37,11 @@ function Employees() {
                         "Zip Code",
                      ]}
                      pagination={{
-                        limit: 10,
+                        limit: 5,
                      }}
                   />
                </span>
-            </div>
+            </section>
          </main>
       </>
    );

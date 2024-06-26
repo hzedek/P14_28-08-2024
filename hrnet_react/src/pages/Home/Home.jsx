@@ -1,7 +1,5 @@
-/////////////////////////////////////////////////////////////////////////
-// import axios from "axios";
 import "./Home.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { states } from "../../data/states.json";
 // DATEPICKER
 import DatePicker from "react-datepicker";
@@ -9,18 +7,15 @@ import "react-datepicker/dist/react-datepicker.css";
 // DROPDOWN
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
-/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+// MODAL FROM NPM (LEWISMODAL)
+//
 // import Modal, { openModal, closeModal } from "../../components/Modal/Modal";
-/////////////////////////////////////////////////////////////////////////
 // import Modal, { openModal } from "lewismodal";
-//
+/////////////////////////////////////////////////////////////////////////////////////////
 // DROPDOWN : SETUP
-//
 const options = states.map((states) => states.name); // const defaultOption = options[0];
-/////////////////////////////////////////////////////////////////////////
-//
 // DEPARTMENT : SETUP
-//
 const departmentCategories = [
    "Sales",
    "Marketing",
@@ -28,10 +23,7 @@ const departmentCategories = [
    "Human Resources",
    "Legal",
 ];
-/////////////////////////////////////////////////////////////////////////
-//
 // INITIAL FORM VALUES : SETUP
-//
 const initialValues = {
    firstName: "",
    lastName: "",
@@ -45,10 +37,9 @@ const initialValues = {
 };
 
 function Home() {
+   // INITIAL FORM VALUES
    const [formValues, setFormValues] = useState(initialValues);
-   //
-   // EDIT FORM VALUES ONCHANGE()
-   //
+   // EDIT FORM VALUES ONCHANGE() FOR EACH INPUT
    const handleInputChange = (e) => {
       e.preventDefault();
       const { name, value } = e.target;
@@ -57,9 +48,7 @@ function Home() {
          [name]: value,
       });
    };
-   //
    // ENVOI DU FORMULAIRE + SETUP LOCALSTORAGE
-   //
    const submitForm = () => {
       console.log("FINAL VALUES OF FORM", formValues);
       localStorage.setItem(
@@ -68,7 +57,7 @@ function Home() {
       );
    };
    ///////////////////////////////////////////////////////////////////////////
-   // MODAL
+   // NPM LEWIS MODAL
    //
    // function openModal() {
    //    document.getElementById("validationModal").style.display = "block";
@@ -76,35 +65,51 @@ function Home() {
    // function closeModal() {
    //    document.getElementById("validationModal").style.display = "none";
    // }
+   ///////////////////////////////////////////////////////////////////////////
+   useEffect(() => {
+      document.getElementsByClassName("is-open").classList.remove("is-open");
+   });
+
+   // document.body.addEventListener("click", () =>
+   //    // alert("this is the body mate")
+   //    document
+   //       .getElementsByClassName("Dropdown-root")
+   //       .classList.remove("is-open")
+   // );
 
    return (
       <>
-         <main>
-            {/*
-               *** THIS IS THE LOCAL MODAL ***
-               <div id="validationModal">
-                  <button id="closeValidationModal" onClick={closeModal}></button>
-                  <div id="confirmation">Employee Created !</div>
-               </div>
-            */}
-            {/*
-               *** THIS IS THE NPM MODAL ***
-               <Modal />
-            */}
-            <div id="WHealth-Logo-Container">
+         <header id="WHealth-Header">
+            <div id="WHealth-Logo-Container_Employees">
                <img
                   id="WHealth-Logo"
                   src="./src/assets/WHealthLogoEdited.png"
                   alt="Logo WealthHealth"
+                  onClick={() => (location.href = "/")}
                />
             </div>
             <a id="WHealth-LinkBtn" href="/employees">
-               View Current Employees
+               View Employees
             </a>
-
+         </header>
+         <main>
+            {/*
+               *******************************
+               *** THIS IS THE LOCAL MODAL ***
+               *******************************
+                  <div id="validationModal">
+                     <button id="closeValidationModal" onClick={closeModal}></button>
+                     <div id="confirmation">Employee Created !</div>
+                  </div>
+               *****************************
+               *** THIS IS THE NPM MODAL ***
+               *****************************
+                  <Modal />
+            */}
             <section className="WHealth-FormSection">
-               <h2 className="CreateEmployeeTitle">Create Employee</h2>
+               <h1 className="WHealth-Title">Create Employee</h1>
                <form
+                  id="WHealth-Formulaire"
                   onSubmit={(e) => {
                      e.preventDefault(),
                         submitForm(),
@@ -112,7 +117,6 @@ function Home() {
                            /*openModal() */
                         };
                   }}
-                  id="create-employee"
                >
                   {/* ----- FIRST NAME ----- */}
                   <label htmlFor="first-name">First Name</label>
@@ -204,6 +208,7 @@ function Home() {
                      {/* ----- STATE ----- */}
                      <label>State</label>
                      <Dropdown
+                        className="HrnetDropdown"
                         options={options}
                         value={formValues.addressState}
                         name="addressState"
@@ -233,6 +238,7 @@ function Home() {
                   {/* ----- DEPARTMENT ----- */}
                   <label htmlFor="department">Department</label>
                   <Dropdown
+                     className="HrnetDropdown"
                      options={departmentCategories}
                      value={formValues.department}
                      name="department"
