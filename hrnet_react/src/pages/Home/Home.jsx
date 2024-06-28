@@ -10,9 +10,10 @@ import "react-dropdown/style.css";
 /////////////////////////////////////////////////////////////////////////////////
 // NPM LEWISMODAL : IMPORT
 // import Modal, { openModal, closeModal } from "../../components/Modal/Modal";
-// import Modal, { openModal } from "lewismodal";
+import Modal, { openModal } from "lewismodal";
 //
 //
+
 // FUNCTIONS OPEN/CLOSE MODAL
 // function openModal() {
 //    document.getElementById("validationModal").style.display = "block";
@@ -79,6 +80,7 @@ function Home() {
             </a>
          </header>
          <main>
+            <Modal />
             {/*
                *******************************
                *** THIS IS THE LOCAL MODAL ***
@@ -90,18 +92,14 @@ function Home() {
                *****************************
                *** THIS IS THE NPM MODAL ***
                *****************************
-                  <Modal />
-            */}
+               */}
+
             <section className="WHealth-FormSection">
                <h1 className="WHealth-Title">Create Employee</h1>
                <form
                   id="WHealth-Formulaire"
                   onSubmit={(e) => {
-                     e.preventDefault(),
-                        submitForm(),
-                        {
-                           /*openModal() */
-                        };
+                     e.preventDefault(), submitForm(), openModal();
                   }}
                >
                   {/* ----- FIRST NAME ----- */}
