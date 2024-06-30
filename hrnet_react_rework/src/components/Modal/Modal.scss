@@ -1,0 +1,54 @@
+// #validationModal {
+//    display: block;
+//    position: absolute;
+//    z-index: 999;
+//    width: 80%;
+//    height: 80%;
+//    background-color: rgb(210, 250, 225);
+//    border-radius: 10px;
+//    top: 50%;
+//    left: 50%;
+//    right: auto;
+//    bottom: auto;
+//    margin-right: -50%;
+//    transform: translate(-50%, -50%);
+//    border-style: solid;
+//    border-color: black;
+//    border-width: 2px;
+// }
+// #closeValidationModal {
+//    position: relative;
+//    top: 5px;
+//    left: calc(100% - 30px);
+//    width: 25px;
+//    height: 25px;
+//    background-color: white;
+//    border-radius: 7.5px;
+//    border-style: solid;
+//    border-width: 2px;
+//    display: flex;
+//    justify-content: center;
+//    align-items: center;
+// }
+// #closeValidationModal::before,
+// #closeValidationModal::after {
+//    background-color: red;
+//    position: absolute;
+//    width: 17px;
+//    height: 2px;
+//    content: "";
+// }
+// #closeValidationModal::before {
+//    transform: rotate(45deg);
+// }
+// #closeValidationModal::after {
+//    transform: rotate(-45deg);
+// }
+// #confirmation {
+//    display: flex;
+//    justify-content: center;
+//    align-items: center;
+//    height: 75%;
+//    font-weight: 700;
+//    font-size: 24px;
+// }
