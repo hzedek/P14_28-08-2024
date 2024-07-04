@@ -10,7 +10,7 @@ import "react-dropdown/style.css";
 /////////////////////////////////////////////////////////////////////////////////
 // NPM LEWISMODAL : IMPORT
 // import Modal, { openModal, closeModal } from "../../components/Modal/Modal";
-import Modal, { openModal } from "lewismodal";
+import Modal, { openModal, closeModal } from "lewismodal";
 //
 //
 
