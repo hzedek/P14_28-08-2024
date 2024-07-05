@@ -77,7 +77,12 @@ function Home() {
             </a>
          </header>
          <main>
-            <Modal />
+            <Modal
+               modalMessage={"Employee Created!"}
+               modalBackground={"red"}
+               modalFontColor={"white"}
+               modalFontSize={32}
+            />
             {/*
                *******************************
                *** THIS IS THE LOCAL MODAL ***
