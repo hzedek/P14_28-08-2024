@@ -18,7 +18,7 @@ main {
    left: 50%;
    transform: translate(-50%);
    background-color: rgb(105 150 30);
-   padding: 10px;
+   // padding: 10px;
 }
 ////////////////////////////////////////////////////////////////////////////////
 // HEADER
@@ -26,8 +26,10 @@ main {
    display: flex;
    justify-content: space-between;
    align-items: center;
-   padding: 10px;
-   width: 100%;
+   // padding: 10px;
+   margin: 15px;
+   width: calc(100% - 30px);
+   height: 75px;
 }
 // WEALTHHEALTH LOGO
 #WHealth-Logo-Container {
@@ -39,17 +41,21 @@ main {
    border-radius: 10px;
 }
 #WHealth-Logo {
-   margin: 10px;
+   // margin: 10px;
    border-radius: 10px;
-   width: 90px;
-   height: 90px;
+   // width: 90px;
+   width: 75px;
+   // height: auto;
+   height: 75px;
    cursor: pointer;
 }
 // WEALTHHEALTH LINK BTN
 #WHealth-LinkBtn {
-   height: 100%;
+   display: flex;
+   align-items: center;
+   // height: 100%;
    background-color: white;
-   text-decoration: underline;
+   text-decoration: none;
    font-weight: 700;
    font-size: 15px;
    color: rgb(50, 50, 0);
@@ -67,8 +73,8 @@ main {
    flex-direction: column;
    align-items: center;
    background-color: rgb(230, 245, 200);
-   padding: 10px;
-   width: 600px;
+   padding: 5px;
+   width: 555px;
    border-radius: 10px;
    border-style: solid;
    border-width: 1px;
@@ -78,11 +84,11 @@ main {
 .WHealth-Title {
    height: 100%;
    background-color: white;
-   font-size: 24px;
+   font-size: 20px;
    color: rgb(50, 50, 0);
-   margin: 20px;
+   margin: 10px;
    border-radius: 5px;
-   padding: 10px;
+   padding: 5px;
    border-style: solid;
    border-color: rgb(50, 50, 0);
    border-width: 1px;
@@ -92,12 +98,14 @@ main {
    display: flex;
    flex-direction: column;
    width: 300px;
-   margin-top: 10px;
+   // margin-top: 10px;
    color: black;
 }
 #WHealth-Formulaire ::placeholder {
-   font-style: italic;
-   color: black;
+   color: black !important;
+   // font-style: italic !important;
+   font-weight: 500 !important;
+   letter-spacing: 1px !important;
 }
 #WHealth-Formulaire label,
 legend {
@@ -109,6 +117,7 @@ legend {
    margin: 0px !important;
 }
 // WEALTHHEALTH INPUTS / SELECTS / BUTTONS
+// #WHealth-Formulaire ::placeholder,
 input,
 select,
 button {
@@ -119,15 +128,16 @@ button {
    border-color: black;
    border-style: solid;
    cursor: pointer;
-   font-size: 15px;
+   font-size: 16px;
+   font-weight: 600px;
 }
 ////////////////////////////////////////////////////////////////////////////////
 // WEALTHHEALTH FIELDSET
 .FieldsetAddress {
    display: flex;
    flex-direction: column;
-   margin-top: 5px;
-   padding: 5px;
+   margin: 5px 0;
+   padding: 0 5px 5px;
    border-style: dashed;
    border-color: black;
    border-width: 1px;
@@ -142,19 +152,20 @@ button {
    justify-content: center;
    align-items: center;
    width: 100%;
-   margin-top: 20px;
-   margin-bottom: 10px;
+   // margin-top: 20px;
+   // margin-bottom: 10px;
+   margin: 15px 0 5px;
 }
 #save-button {
-   display: flex;
+   // display: flex;
    justify-content: center;
-   width: 70%;
+   width: 50%;
    height: 100%;
    display: flex;
    font-weight: 600;
    font-size: 16px;
    background-color: rgb(105, 150, 30);
-   padding: 10px;
+   padding: 5px;
 }
 #save-button:hover {
    background-color: chartreuse;
@@ -165,8 +176,9 @@ button {
    cursor: pointer;
    caret-color: transparent;
    width: 100%;
-   font-style: italic;
+   // font-style: italic;
    color: black;
+   font-weight: 500;
 }
 // WEALTHHEALTH PLUGINS : DROPDOWN MENU
 #state,
@@ -179,7 +191,9 @@ button {
 }
 .Dropdown-root {
    margin-bottom: 0px !important;
+   height: 25px;
 }
+
 .Dropdown-control {
    border-color: black !important;
    padding: 5px !important;
@@ -191,7 +205,10 @@ button {
 }
 .Dropdown-placeholder {
    color: black !important;
-   font-style: italic !important;
+   // font-style: italic !important;
+   font-weight: 500 !important;
+
+   // font-family: Inter !important;
 }
 .Dropdown-menu {
    border-radius: 5px !important;

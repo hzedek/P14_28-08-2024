@@ -10,17 +10,8 @@ import "react-dropdown/style.css";
 /////////////////////////////////////////////////////////////////////////////////
 // NPM LEWISMODAL : IMPORT
 // import Modal, { openModal, closeModal } from "../../components/Modal/Modal";
-import Modal, { openModal, closeModal } from "lewismodal";
-//
-//
+import Modal, { openModal } from "lewismodal";
 
-// FUNCTIONS OPEN/CLOSE MODAL
-// function openModal() {
-//    document.getElementById("validationModal").style.display = "block";
-// }
-// function closeModal() {
-//    document.getElementById("validationModal").style.display = "none";
-// }
 /////////////////////////////////////////////////////////////////////////////////
 // DEPARTMENT : SETUP
 const departmentCategories = [
@@ -63,6 +54,12 @@ function Home() {
          JSON.stringify(formValues)
       );
    };
+   // LISTE DES ETATS
+   const etatsunis = states.map((state, index) => [
+      (state.value = index),
+      " - ",
+      state.name,
+   ]);
 
    return (
       <>
@@ -193,10 +190,7 @@ function Home() {
                      <label>State</label>
                      <Dropdown
                         className="HrnetDropdown"
-                        options={states.map((state, index) => [
-                           (state.value = index),
-                           state.name,
-                        ])}
+                        options={etatsunis}
                         value={formValues.addressState}
                         name="addressState"
                         placeholder={"Select a state..."}
