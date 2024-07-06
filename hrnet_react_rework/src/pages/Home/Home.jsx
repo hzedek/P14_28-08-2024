@@ -67,7 +67,7 @@ function Home() {
             <div id="WHealth-Logo-Container_Employees">
                <img
                   id="WHealth-Logo"
-                  src="./src/assets/WHealthLogoEdited.png"
+                  src="./src/assets/WHealthLogoEdited_lower.png"
                   alt="Logo WealthHealth"
                   onClick={() => (location.href = "/")}
                />
