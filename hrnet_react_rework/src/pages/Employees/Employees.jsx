@@ -36,6 +36,8 @@ function Employees() {
                         "State",
                         "Zip Code",
                      ]}
+                     search={true}
+                     sort={true}
                      pagination={{
                         limit: 7,
                      }}
