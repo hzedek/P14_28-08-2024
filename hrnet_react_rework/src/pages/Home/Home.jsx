@@ -1,4 +1,5 @@
 import "./Home.scss";
+
 import { useState } from "react";
 import { states } from "../../data/states.json";
 // DATEPICKER
@@ -63,19 +64,6 @@ function Home() {
 
    return (
       <>
-         <header id="WHealth-Header">
-            <div id="WHealth-Logo-Container_Employees">
-               <img
-                  id="WHealth-Logo"
-                  src="./src/assets/WHealthLogoEdited_lower.png"
-                  alt="Logo WealthHealth"
-                  onClick={() => (location.href = "/")}
-               />
-            </div>
-            <a id="WHealth-LinkBtn" href="/employees">
-               View Employees
-            </a>
-         </header>
          <main>
             {/* <Modal
                modalMessage={"Employee Created!"}
