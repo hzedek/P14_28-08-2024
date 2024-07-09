@@ -10,3 +10,12 @@
    border: 0;
    box-sizing: border-box;
 }
+
+html,
+body {
+   height: 100%;
+}
+
+div#root {
+   height: calc(100% - 75px);
+}

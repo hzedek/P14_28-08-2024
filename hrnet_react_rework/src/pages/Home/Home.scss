@@ -1,25 +1,12 @@
-// BASE DIMENSIONS
-html,
-body {
-   width: 100%;
-   height: 100%;
-   // background-color: rgb(105, 150, 30);
-   // overflow: hidden;
-   overflow: auto;
-}
 // MAIN SETUP
 main {
    display: flex;
    align-items: center;
    flex-direction: column;
-   position: relative;
    min-width: 100%;
-   // height: calc(100% - 75px);
-   height: 100%;
-   left: 50%;
-   transform: translate(-50%);
+   min-height: 100%;
    background-color: rgb(105 150 30);
-   // padding: 10px;
+   overflow-y: hidden;
 }
 ////////////////////////////////////////////////////////////////////////////////
 // WEALTHHEALTH FORM SECTION

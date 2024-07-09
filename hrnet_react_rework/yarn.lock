@@ -1654,10 +1654,10 @@ levn@^0.4.1:
     prelude-ls "^1.2.1"
     type-check "~0.4.0"
 
-lewismodal@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.npmjs.org/lewismodal/-/lewismodal-2.0.1.tgz"
-  integrity sha512-1PE1mGMW7ifpCocd7vmbvcZ3gYsB3ygDvNfblPnHXWbvagtz6pYP08SIgBPQnGLC+floIOi+IBsf9cOpJBqQCA==
+lewismodal@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.npmjs.org/lewismodal/-/lewismodal-2.0.2.tgz"
+  integrity sha512-KjJK5BoO25zYwOS0Rnfkk8OrALBQyqj7kxTevjTmbBVLOEeUULA1Gf+i4gGsUhRqs0Ss7Vqln5iaPNQAx4eP/w==
   dependencies:
     node-fetch "^3.3.2"
     react "^18.3.1"

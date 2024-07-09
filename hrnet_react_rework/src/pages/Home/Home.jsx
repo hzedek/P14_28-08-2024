@@ -1,5 +1,5 @@
 import "./Home.scss";
-
+import Header from "../../components/Header/Header.jsx";
 import { useState } from "react";
 import { states } from "../../data/states.json";
 // DATEPICKER
@@ -64,6 +64,7 @@ function Home() {
 
    return (
       <>
+         <Header />
          <main>
             {/* <Modal
                modalMessage={"Employee Created!"}
@@ -71,19 +72,19 @@ function Home() {
                modalFontColor={"white"}
                modalFontSize={64}
             /> */}
-            <Modal />
             {/*
                *******************************
                *** THIS IS THE LOCAL MODAL ***
                *******************************
-                  <div id="validationModal">
-                     <button id="closeValidationModal" onClick={closeModal}></button>
-                     <div id="confirmation">Employee Created !</div>
-                  </div>
+               <div id="validationModal">
+               <button id="closeValidationModal" onClick={closeModal}></button>
+               <div id="confirmation">Employee Created !</div>
+               </div>
                *****************************
                *** THIS IS THE NPM MODAL ***
                *****************************
-               */}
+            */}
+            <Modal />
 
             <section className="WHealth-FormSection">
                <h1 className="WHealth-Title">Create Employee</h1>
