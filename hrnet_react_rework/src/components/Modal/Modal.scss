@@ -1,42 +1,57 @@
+// //////////////////
+// // MODAL WINDOW //
+// //////////////////
 // #validationModal {
-//    display: block;
-//    position: absolute;
+//    display: none;
+//    justify-content: center;
+//    align-items: center;
+//    position: fixed;
 //    z-index: 999;
-//    width: 80%;
-//    height: 80%;
-//    background-color: rgb(210, 250, 225);
-//    border-radius: 10px;
-//    top: 50%;
-//    left: 50%;
-//    right: auto;
-//    bottom: auto;
-//    margin-right: -50%;
-//    transform: translate(-50%, -50%);
-//    border-style: solid;
-//    border-color: black;
-//    border-width: 2px;
+//    width: 100%;
+//    height: 100%;
+//    left: 0;
+//    top: 0;
 // }
-// #closeValidationModal {
-//    position: relative;
-//    top: 5px;
-//    left: calc(100% - 30px);
-//    width: 25px;
-//    height: 25px;
-//    background-color: white;
-//    border-radius: 7.5px;
+// ///////////////////
+// // MODAL DISPLAY //
+// ///////////////////
+// #contentModal {
+//    display: flex;
+//    align-items: center;
+//    justify-content: center;
+//    position: absolute;
+//    background-color: lightgreen;
+//    border-radius: 20px;
 //    border-style: solid;
 //    border-width: 2px;
+//    border-color: rgb(50, 50, 50);
+// }
+// //////////////////
+// // CLOSE BUTTON //
+// //////////////////
+// #closeValidationModal {
 //    display: flex;
 //    justify-content: center;
 //    align-items: center;
+//    position: absolute;
+//    top: 5px;
+//    right: 5px;
+//    width: 30px;
+//    height: 30px;
+//    background-color: white;
+//    border-radius: 50px;
+//    border-color: rgb(50, 50, 50);
+//    border-width: 2px;
+//    border-style: solid;
 // }
 // #closeValidationModal::before,
 // #closeValidationModal::after {
-//    background-color: red;
+//    background-color: rgb(50, 50, 50);
 //    position: absolute;
-//    width: 17px;
+//    width: 19px;
 //    height: 2px;
 //    content: "";
+//    border-radius: 25px;
 // }
 // #closeValidationModal::before {
 //    transform: rotate(45deg);
@@ -44,11 +59,17 @@
 // #closeValidationModal::after {
 //    transform: rotate(-45deg);
 // }
-// #confirmation {
-//    display: flex;
-//    justify-content: center;
-//    align-items: center;
-//    height: 75%;
-//    font-weight: 700;
-//    font-size: 24px;
+// #closeValidationModal:hover {
+//    cursor: pointer;
+// }
+// ///////////////////
+// // MODAL MESSAGE //
+// ///////////////////
+// #confirmationModal {
+//    font-family: Arial, Helvetica, sans-serif;
+//    font-weight: 600;
+//    text-align: center;
+// }
+// #confirmationModal:hover {
+//    cursor: default;
 // }
