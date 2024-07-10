@@ -11,6 +11,26 @@
    border-color: rgb(50, 50, 0);
 }
 
+#selectTableLength {
+   position: absolute;
+   margin-top: 10px;
+   margin-left: 5px;
+   z-index: 1;
+}
+
+.gridjs-search::before {
+   content: "Search: ";
+}
+.gridjs-search {
+   float: right !important;
+}
+.gridjs-search-input {
+   width: 200px !important;
+   font-style: italic;
+   letter-spacing: 1px;
+   border-color: black !important;
+}
+
 @media (min-width: 1024px) {
    main,
    .WHealth-GridSection {

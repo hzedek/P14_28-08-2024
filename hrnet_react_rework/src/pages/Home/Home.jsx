@@ -64,7 +64,7 @@ function Home() {
 
    return (
       <>
-         <Header />
+         <Header actualPage={"View Employees"} />
          <main>
             {/* <Modal
                modalMessage={"Employee Created!"}

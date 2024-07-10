@@ -1,18 +1,18 @@
 import "./Header.scss";
 
 function Header() {
+   let pathname = location.pathname;
+
    return (
       <header id="WHealth-Header">
-         <div id="WHealth-Logo-Container_Employees">
-            <img
-               id="WHealth-Logo"
-               src="./src/assets/WHealthLogoEdited_lower.png"
-               alt="Logo WealthHealth"
-               onClick={() => (location.href = "/")}
-            />
-         </div>
-         <a id="WHealth-LinkBtn" href="/employees">
-            View Employees
+         <img
+            id="WHealth-Logo"
+            src="./src/assets/WHealthLogoEdited_lower.png"
+            alt="Logo WealthHealth"
+            onClick={() => (location.href = "/")}
+         />
+         <a id="WHealth-LinkBtn" href={pathname === "/" ? "/employees" : "/"}>
+            {pathname === "/" ? "View Current Employees" : "Home"}
          </a>
       </header>
    );
