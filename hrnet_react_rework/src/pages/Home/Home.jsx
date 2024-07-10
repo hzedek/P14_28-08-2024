@@ -11,7 +11,7 @@ import "react-dropdown/style.css";
 /////////////////////////////////////////////////////////////////////////////////
 // NPM LEWISMODAL : IMPORT
 // import Modal, { openModal, closeModal } from "../../components/Modal/Modal";
-import Modal, { openModal } from "lewismodal";
+import LewisModal, { openModal } from "lewismodal";
 
 /////////////////////////////////////////////////////////////////////////////////
 // DEPARTMENT : SETUP
@@ -56,50 +56,25 @@ function Home() {
       );
    };
    // LISTE DES ETATS
-   // const etatsunisAbbr = states.map((state) => [state.abbreviation]);
-   // const etatsunisNoms = states.map((state) => [state.name]);
    const etatsunis = states.map((state, index) => [
       index,
       state.name,
       state.abbreviation,
-      // (state.value = index),
-      // " - ",
-      // state.name,
    ]);
 
-   const [newStatesArray, setNewStatesArray] = useState([]);
-
+   // ETAT CHOISI DANS LA LISTE
+   const [selectedState, setSelectedState] = useState();
+   // REFRESH DU CHOIX
    useEffect(() => {
-      states.forEach((state, index) => {
-         setNewStatesArray((previousArray) => [...previousArray, state]);
-         newStatesArray.push([index, state.name, state.abbreviation]);
-      });
-   }, []);
+      selectedState;
+   }, [selectedState]);
 
-   console.log(newStatesArray);
    return (
       <>
          <Header actualPage={"View Employees"} />
          <main>
-            {/* <Modal
-               modalMessage={"Employee Created!"}
-               modalBackground={"red"}
-               modalFontColor={"white"}
-               modalFontSize={64}
-            /> */}
-            {/*
-               *******************************
-               *** THIS IS THE LOCAL MODAL ***
-               *******************************
-               <div id="validationModal">
-               <button id="closeValidationModal" onClick={closeModal}></button>
-               <div id="confirmation">Employee Created !</div>
-               </div>
-               *****************************
-               *** THIS IS THE NPM MODAL ***
-               *****************************
-            */}
-            <Modal />
+            {/* NPM LEWISMODAL */}
+            <LewisModal />
 
             <section className="WHealth-FormSection">
                <h1 className="WHealth-Title">Create Employee</h1>
@@ -201,20 +176,46 @@ function Home() {
                      <Dropdown
                         className="HrnetDropdown"
                         options={etatsunis}
-                        value={formValues.addressState.name}
+                        value={selectedState}
+                        name="addressState"
+                        placeholder={"Select a state..."}
+                        required={true}
+                        // ICI, ON RECUPERE L'INDEX DE L'ETAT AVANT D'EN PRENDRE SON ABBREVIATION
+                        onChange={(state) => {
+                           let chosenState = etatsunis[state.value[0]][1];
+                           console.log(etatsunis[state.value[0]]);
+                           console.log(
+                              "setformvalue",
+                              etatsunis[state.value[0]]
+                           );
+                           //  etatsunis[state.value[0]][1]
+                           setFormValues({
+                              ...formValues,
+                              // ["addressState"]: etatsunis[state.value[0]],
+                              ["addressState"]: etatsunis[state.value[0][2]],
+                           });
+                           setSelectedState(chosenState);
+                        }}
+                     />
+                     {/* <Dropdown
+                        className="HrnetDropdown"
+                        options={states}
+                        value={formValues.addressState}
                         name="addressState"
                         placeholder={"Select a state..."}
                         required={true}
                         // ICI, ON RECUPERE L'INDEX DE L'ETAT AVANT D'EN PRENDRE SON ABBREVIATION
                         onChange={(state, id) => {
-                           console.log(state, "id", id),
-                              setFormValues({
-                                 ...formValues,
-                                 ["addressState"]:
-                                    states[state.value[0]].abbreviation,
-                              });
+                           console.log("stated [id}", state[id]),
+                              console.log("value[0}", states[state.value[0]]);
+                           setFormValues({
+                              ...formValues,
+                              ["addressState"]:
+                                 // states[state.value[0]].abbreviation,
+                                 states[id].abbreviation,
+                           });
                         }}
-                     />
+                     /> */}
                      {/* ----- ZIP CODE ----- */}
                      <label>Zip Code</label>
                      <input
