@@ -1,6 +1,6 @@
 import "./Home.scss";
 import Header from "../../components/Header/Header.jsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { states } from "../../data/states.json";
 // DATEPICKER
 import DatePicker from "react-datepicker";
@@ -56,12 +56,27 @@ function Home() {
       );
    };
    // LISTE DES ETATS
+   // const etatsunisAbbr = states.map((state) => [state.abbreviation]);
+   // const etatsunisNoms = states.map((state) => [state.name]);
    const etatsunis = states.map((state, index) => [
-      (state.value = index),
-      " - ",
+      index,
       state.name,
+      state.abbreviation,
+      // (state.value = index),
+      // " - ",
+      // state.name,
    ]);
 
+   const [newStatesArray, setNewStatesArray] = useState([]);
+
+   useEffect(() => {
+      states.forEach((state, index) => {
+         setNewStatesArray((previousArray) => [...previousArray, state]);
+         newStatesArray.push([index, state.name, state.abbreviation]);
+      });
+   }, []);
+
+   console.log(newStatesArray);
    return (
       <>
          <Header actualPage={"View Employees"} />
@@ -186,17 +201,18 @@ function Home() {
                      <Dropdown
                         className="HrnetDropdown"
                         options={etatsunis}
-                        value={formValues.addressState}
+                        value={formValues.addressState.name}
                         name="addressState"
                         placeholder={"Select a state..."}
                         required={true}
                         // ICI, ON RECUPERE L'INDEX DE L'ETAT AVANT D'EN PRENDRE SON ABBREVIATION
-                        onChange={(state) => {
-                           setFormValues({
-                              ...formValues,
-                              ["addressState"]:
-                                 states[state.value[0]].abbreviation,
-                           });
+                        onChange={(state, id) => {
+                           console.log(state, "id", id),
+                              setFormValues({
+                                 ...formValues,
+                                 ["addressState"]:
+                                    states[state.value[0]].abbreviation,
+                              });
                         }}
                      />
                      {/* ----- ZIP CODE ----- */}
@@ -225,7 +241,7 @@ function Home() {
                      onChange={(department) =>
                         setFormValues({
                            ...formValues,
-                           ["department"]: department,
+                           ["department"]: department.value,
                         })
                      }
                   />

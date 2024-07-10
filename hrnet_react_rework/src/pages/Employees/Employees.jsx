@@ -3,10 +3,48 @@ import { Grid } from "gridjs-react";
 import "gridjs/dist/theme/mermaid.css";
 import HumanRessources from "../../../src/data/formdata.json";
 import Header from "../../components/Header/Header.jsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Employees() {
-   const [tableLength, letTableLength] = useState(5);
+   const [tableLength, setTableLength] = useState(5);
+   const [localImportedValues, setLocalImportedValues] = useState([]);
+
+   // Ici, on récupère les données LocalStorage pour en faire du JSON
+   useEffect(() => {
+      console.log("-----1st Import-----");
+      for (let i = 0; i < localStorage.length; i++) {
+         // console.log(localStorage.getItem("birthDay"));
+
+         // setLocalTest((previousArray) => [...previousArray, "hello+", i]);
+         // setLocalTest((previousArray) => [
+         //    ...previousArray,
+         //    localStorage.key(JSON.parse(i)),
+         // ]);
+         /////////////
+         let currentKey = localStorage.key(i);
+         let stockage = localStorage.getItem(currentKey);
+         // console.log("stockage", stockage);
+         let stockageParse = JSON.parse(stockage);
+
+         setLocalImportedValues((previousArray) => [
+            ...previousArray,
+            stockageParse,
+         ]);
+      }
+   }, []);
+   // console.log("localVariable", localImportedValues);
+   console.log("---------");
+   localImportedValues.forEach((date) => {
+      console.log(date);
+      // let dateBrute = data.birthDay;
+      // console.log(dateBrute.format("D/MM/YYYY"));
+      // console.log(data.birthDay.format("D/MM/YYYY"));
+   });
+   // localImportedValues.forEach((data) => {
+   //    data;
+   // });
+
+   // .format("D/MM/YYYY")
 
    return (
       <>
@@ -19,7 +57,7 @@ function Employees() {
                      Show&nbsp;
                      <select
                         id="table-length"
-                        onChange={(e) => letTableLength(e.target.value)}
+                        onChange={(e) => setTableLength(e.target.value)}
                      >
                         <option value="5">5</option>
                         <option value="10">10</option>
@@ -30,7 +68,8 @@ function Employees() {
                      &nbsp;entries
                   </div>
                   <Grid
-                     data={HumanRessources}
+                     // data={HumanRessources}
+                     data={localImportedValues}
                      columns={[
                         "First Name",
                         "Last Name",
