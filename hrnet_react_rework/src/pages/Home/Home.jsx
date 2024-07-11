@@ -56,11 +56,8 @@ function Home() {
       );
    };
    // LISTE DES ETATS
-   // const etatsunis = states.map((state) => [[state.name, state.abbreviation]]);
-   // console.log(etatsunis);
    const etatsunisNameOnly = states.map((state) => [[state.name]]);
    const etatsunisAbbrOnly = states.map((state) => [[state.abbreviation]]);
-
    // ETAT CHOISI DANS LA LISTE
    const [selectedState, setSelectedState] = useState(); // Valeur du choix dans la liste
    const [stateName, setStateName] = useState(); // Valeur attribuée au champ "VALUE" par le useState ci-dessus

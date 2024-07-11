@@ -22,7 +22,13 @@ function Employees() {
          ]);
       }
    }, []);
+   const newArray = localImportedValues.map((item) => {
+      return { ...item, firstName: "Louis" };
+   });
+   console.log("newArray", newArray);
 
+   // let test123 = localImportedValues.filter((item) => [item][0]);
+   // console.log("value", localImportedValues);
    // setLocalImportedValues((localImportedValues[0].lastName = "Louis"));
    // console.log(localImportedValues[0].lastName);
 
