@@ -22,53 +22,58 @@ function Employees() {
          ]);
       }
    }, []);
+
+   function formatDate(item) {
+      let newDateFormat = new Date(item);
+      let day = newDateFormat.getDate();
+      let month = newDateFormat.getMonth();
+      let year = newDateFormat.getFullYear();
+      let finaleDayFormat = `${day}/${month}/${year}`;
+      // console.log(finaleDayFormat);
+      return finaleDayFormat;
+   }
+
    const newArray = localImportedValues.map((item) => {
-      return { ...item, firstName: "Louis" };
+      // newArray.map((item) => {
+      //       let newDateFormat = new Date(item.birthDay);
+      //       let day = newDateFormat.getDate();
+      //       let month = newDateFormat.getMonth();
+      //       let year = newDateFormat.getFullYear();
+      //       let finaleDayFormat = `${day}/${month}/${year}`;
+      //       console.log(finaleDayFormat);
+      //    });
+      //---------------------
+
+      let birth = "";
+      if (item.birthDay) {
+         birth = formatDate(item.birthDay);
+      }
+
+      let start = "";
+      if (item.startDay) {
+         // console.log(item.startDay);
+         start = formatDate(item.startDay);
+      }
+      // console.log("start", start123);
+      return {
+         ...item,
+         firstName: "Louis",
+         birthDay: birth,
+         startDay: start,
+      };
    });
-   console.log("newArray", newArray);
+   console.log(newArray);
 
-   // let test123 = localImportedValues.filter((item) => [item][0]);
-   // console.log("value", localImportedValues);
-   // setLocalImportedValues((localImportedValues[0].lastName = "Louis"));
-   // console.log(localImportedValues[0].lastName);
-
-   // localImportedValues.forEach((date) => {
-   //    date.firstName. = "Test";
+   //////////////////////////////////////////////////////////////////
+   // newArray.map((item) => {
+   //    let newDateFormat = new Date(item.birthDay);
+   //    let day = newDateFormat.getDate();
+   //    let month = newDateFormat.getMonth();
+   //    let year = newDateFormat.getFullYear();
+   //    let finaleDayFormat = `${day}/${month}/${year}`;
+   //    console.log(finaleDayFormat);
    // });
-
-   // localImportedValues[0].firstName = "test";
-
-   // setLocalImportedValues((previousArray) => [
-   //    ...previousArray,
-   //    stockageParse,
-   // ]);
-
-   ///////////////////////////////////////////////////////////////
-   // Ici, on récupère les données LocalStorage pour en faire du JSON
-   // useEffect(() => {
-   //    console.log("-----1st Import-----");
-   //    for (let i = 0; i < localStorage.length; i++) {
-   //       setLocalImportedValues((previousArray) => [
-   //          ...previousArray,
-   //          "hello",
-   //          i,
-   //       ]);
-   //       console.log("LOCALIMPORTED: ", localImportedValues);
-   //    }
-   // }, [localStorage.length]);
-   ///////////////////////////////////////////////////////////////
-   ///////////////////////////////////////////////////////////////
-   // let currentKey = localStorage.key(i);
-   // // console.log(currentKey);
-   // let stockage = localStorage.getItem(currentKey);
-   // // console.log("stockage", stockage);
-   // let stockageParsed = JSON.parse(stockage);
-   // console.log(stockageParsed);
-   // // setLocalImportedValues((previousArray) => [
-   // //    ...previousArray,
-   // //    stockageParse,
-   // // ]);
-   ///////////////////////////////////////////////////////////////
+   //////////////////////////////////////////////////////////////////
 
    return (
       <>
