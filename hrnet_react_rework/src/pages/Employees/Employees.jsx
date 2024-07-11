@@ -8,43 +8,61 @@ import { useEffect, useState } from "react";
 function Employees() {
    const [tableLength, setTableLength] = useState(5);
    const [localImportedValues, setLocalImportedValues] = useState([]);
+   const [date, setDate] = useState();
 
-   // Ici, on récupère les données LocalStorage pour en faire du JSON
    useEffect(() => {
-      console.log("-----1st Import-----");
       for (let i = 0; i < localStorage.length; i++) {
-         // console.log(localStorage.getItem("birthDay"));
-
-         // setLocalTest((previousArray) => [...previousArray, "hello+", i]);
-         // setLocalTest((previousArray) => [
-         //    ...previousArray,
-         //    localStorage.key(JSON.parse(i)),
-         // ]);
-         /////////////
          let currentKey = localStorage.key(i);
          let stockage = localStorage.getItem(currentKey);
-         // console.log("stockage", stockage);
-         let stockageParse = JSON.parse(stockage);
+         let stockageParsed = JSON.parse(stockage);
 
          setLocalImportedValues((previousArray) => [
             ...previousArray,
-            stockageParse,
+            stockageParsed,
          ]);
       }
    }, []);
-   // console.log("localVariable", localImportedValues);
-   console.log("---------");
-   localImportedValues.forEach((date) => {
-      console.log(date);
-      // let dateBrute = data.birthDay;
-      // console.log(dateBrute.format("D/MM/YYYY"));
-      // console.log(data.birthDay.format("D/MM/YYYY"));
-   });
-   // localImportedValues.forEach((data) => {
-   //    data;
+
+   // setLocalImportedValues((localImportedValues[0].lastName = "Louis"));
+   // console.log(localImportedValues[0].lastName);
+
+   // localImportedValues.forEach((date) => {
+   //    date.firstName. = "Test";
    // });
 
-   // .format("D/MM/YYYY")
+   // localImportedValues[0].firstName = "test";
+
+   // setLocalImportedValues((previousArray) => [
+   //    ...previousArray,
+   //    stockageParse,
+   // ]);
+
+   ///////////////////////////////////////////////////////////////
+   // Ici, on récupère les données LocalStorage pour en faire du JSON
+   // useEffect(() => {
+   //    console.log("-----1st Import-----");
+   //    for (let i = 0; i < localStorage.length; i++) {
+   //       setLocalImportedValues((previousArray) => [
+   //          ...previousArray,
+   //          "hello",
+   //          i,
+   //       ]);
+   //       console.log("LOCALIMPORTED: ", localImportedValues);
+   //    }
+   // }, [localStorage.length]);
+   ///////////////////////////////////////////////////////////////
+   ///////////////////////////////////////////////////////////////
+   // let currentKey = localStorage.key(i);
+   // // console.log(currentKey);
+   // let stockage = localStorage.getItem(currentKey);
+   // // console.log("stockage", stockage);
+   // let stockageParsed = JSON.parse(stockage);
+   // console.log(stockageParsed);
+   // // setLocalImportedValues((previousArray) => [
+   // //    ...previousArray,
+   // //    stockageParse,
+   // // ]);
+   ///////////////////////////////////////////////////////////////
 
    return (
       <>
@@ -67,7 +85,7 @@ function Employees() {
                      </select>
                      &nbsp;entries
                   </div>
-                  <Grid
+                  {/* <Grid
                      // data={HumanRessources}
                      data={localImportedValues}
                      columns={[
@@ -86,7 +104,7 @@ function Employees() {
                      pagination={{
                         limit: tableLength,
                      }}
-                  />
+                  /> */}
                </span>
             </section>
          </main>
