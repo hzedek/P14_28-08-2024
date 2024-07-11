@@ -8,9 +8,8 @@ import { useEffect, useState } from "react";
 function Employees() {
    const [tableLength, setTableLength] = useState(5);
    const [localImportedValues, setLocalImportedValues] = useState([]);
-   const [date, setDate] = useState();
 
-   useEffect(() => {
+   const initialFunction = () => {
       for (let i = 0; i < localStorage.length; i++) {
          let currentKey = localStorage.key(i);
          let stockage = localStorage.getItem(currentKey);
@@ -21,48 +20,61 @@ function Employees() {
             stockageParsed,
          ]);
       }
+      console.log("success");
+   };
+
+   useEffect(() => {
+      async function init() {
+         const data = await initialFunction();
+         console.log("data", data);
+      }
+      init();
    }, []);
 
+   // Function to format Days to "dd/MM/yyyy"
    function formatDate(item) {
       let newDateFormat = new Date(item);
       let day = newDateFormat.getDate();
       let month = newDateFormat.getMonth();
       let year = newDateFormat.getFullYear();
       let finaleDayFormat = `${day}/${month}/${year}`;
-      // console.log(finaleDayFormat);
       return finaleDayFormat;
    }
-
+   // Final edited version of the
    const newArray = localImportedValues.map((item) => {
-      // newArray.map((item) => {
-      //       let newDateFormat = new Date(item.birthDay);
-      //       let day = newDateFormat.getDate();
-      //       let month = newDateFormat.getMonth();
-      //       let year = newDateFormat.getFullYear();
-      //       let finaleDayFormat = `${day}/${month}/${year}`;
-      //       console.log(finaleDayFormat);
-      //    });
-      //---------------------
-
+      // Format birthday
       let birth = "";
-      if (item.birthDay) {
-         birth = formatDate(item.birthDay);
+      item.birthDay && (birth = formatDate(item.birthDay));
+
+      // Format starting day
+      let start = "";
+      item.startDay && (start = formatDate(item.startDay));
+
+      let formatedDepartment = "";
+      // typeof item.department === "object"
+      //    ? (formatedDepartment = item.department.value)
+      //    : (formatedDepartment = item.department);
+
+      if (typeof item.department === "object") {
+         formatedDepartment = item.department.value;
+      } else {
+         formatedDepartment = item.department;
       }
 
-      let start = "";
-      if (item.startDay) {
-         // console.log(item.startDay);
-         start = formatDate(item.startDay);
-      }
-      // console.log("start", start123);
       return {
          ...item,
-         firstName: "Louis",
-         birthDay: birth,
+         firstName: item.firstName,
+         lastName: item.lastName,
          startDay: start,
+         department: formatedDepartment,
+         birthDay: birth,
+         street: item.addressStreet,
+         city: item.addressCity,
+         state: item.addressState,
+         zipCode: item.addressZipcode,
       };
    });
-   console.log(newArray);
+   // console.log(newArray);
 
    //////////////////////////////////////////////////////////////////
    // newArray.map((item) => {
@@ -96,9 +108,9 @@ function Employees() {
                      </select>
                      &nbsp;entries
                   </div>
-                  {/* <Grid
+                  <Grid
                      // data={HumanRessources}
-                     data={localImportedValues}
+                     data={newArray}
                      columns={[
                         "First Name",
                         "Last Name",
@@ -115,7 +127,7 @@ function Employees() {
                      pagination={{
                         limit: tableLength,
                      }}
-                  /> */}
+                  />
                </span>
             </section>
          </main>
