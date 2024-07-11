@@ -56,18 +56,19 @@ function Home() {
       );
    };
    // LISTE DES ETATS
-   const etatsunis = states.map((state, index) => [
-      index,
-      state.name,
-      state.abbreviation,
-   ]);
+   // const etatsunis = states.map((state) => [[state.name, state.abbreviation]]);
+   // console.log(etatsunis);
+   const etatsunisNameOnly = states.map((state) => [[state.name]]);
+   const etatsunisAbbrOnly = states.map((state) => [[state.abbreviation]]);
 
    // ETAT CHOISI DANS LA LISTE
-   const [selectedState, setSelectedState] = useState();
+   const [selectedState, setSelectedState] = useState(); // Valeur du choix dans la liste
+   const [stateName, setStateName] = useState(); // Valeur attribuée au champ "VALUE" par le useState ci-dessus
    // REFRESH DU CHOIX
    useEffect(() => {
-      selectedState;
-   }, [selectedState]);
+      console.log("update of SelectedState: ", selectedState);
+      return setStateName(selectedState);
+   }, []);
 
    return (
       <>
@@ -175,47 +176,24 @@ function Home() {
                      <label>State</label>
                      <Dropdown
                         className="HrnetDropdown"
-                        options={etatsunis}
-                        value={selectedState}
+                        options={etatsunisNameOnly}
+                        value={stateName}
                         name="addressState"
                         placeholder={"Select a state..."}
                         required={true}
                         // ICI, ON RECUPERE L'INDEX DE L'ETAT AVANT D'EN PRENDRE SON ABBREVIATION
                         onChange={(state) => {
-                           let chosenState = etatsunis[state.value[0]][1];
-                           console.log(etatsunis[state.value[0]]);
-                           console.log(
-                              "setformvalue",
-                              etatsunis[state.value[0]]
-                           );
-                           //  etatsunis[state.value[0]][1]
+                           // Index Value
+                           let index = etatsunisNameOnly.indexOf(state.value);
+                           // STATE NAME:
+                           setSelectedState(state.value[0]);
+                           // STATE NAME ABBREVIATION : Value added to <FORM/> !
                            setFormValues({
                               ...formValues,
-                              // ["addressState"]: etatsunis[state.value[0]],
-                              ["addressState"]: etatsunis[state.value[0][2]],
+                              ["addressState"]: etatsunisAbbrOnly[index][0], // ABBREVIATION OF STATE'S NAME
                            });
-                           setSelectedState(chosenState);
                         }}
                      />
-                     {/* <Dropdown
-                        className="HrnetDropdown"
-                        options={states}
-                        value={formValues.addressState}
-                        name="addressState"
-                        placeholder={"Select a state..."}
-                        required={true}
-                        // ICI, ON RECUPERE L'INDEX DE L'ETAT AVANT D'EN PRENDRE SON ABBREVIATION
-                        onChange={(state, id) => {
-                           console.log("stated [id}", state[id]),
-                              console.log("value[0}", states[state.value[0]]);
-                           setFormValues({
-                              ...formValues,
-                              ["addressState"]:
-                                 // states[state.value[0]].abbreviation,
-                                 states[id].abbreviation,
-                           });
-                        }}
-                     /> */}
                      {/* ----- ZIP CODE ----- */}
                      <label>Zip Code</label>
                      <input
