@@ -3,7 +3,7 @@ import { Grid } from "gridjs-react";
 import "gridjs/dist/theme/mermaid.css";
 import HumanRessources from "../../../src/data/formdata.json";
 import Header from "../../components/Header/Header.jsx";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 function Employees() {
    const [tableLength, setTableLength] = useState(5);
@@ -11,7 +11,9 @@ function Employees() {
    ////////////////////////////////////////////////////////////////////////////////
    useEffect(() => {
       initialFunction();
+      bouclageFinal();
    }, []);
+
    // Function Initiale :
    const initialFunction = () => {
       for (let i = 0; i < localStorage.length; i++) {
@@ -24,56 +26,53 @@ function Employees() {
          ]);
       }
    };
-   console.log(localImportedValues);
-   ////////////////////////////////////////////////////////////////////////////////
-   let finalBouclage = localImportedValues.map((item) => {
-      let birthlocal; // Format birthday
-      if (item.birthDay) {
-         birthlocal = new Date(item.birthDay).toLocaleDateString();
-         // console.log("BIRTH ICI", birthlocal);
-      }
-      let startlocal; // Format startday
-      if (item.startDay) {
-         startlocal = new Date(item.startDay).toLocaleDateString();
-         // console.log("START ICI", startlocal);
-      }
+   let finalBouclage;
+   function bouclageFinal() {
+      finalBouclage = localImportedValues.map((item) => {
+         let birthlocal; // Format birthday
 
-      let formatedDepartment;
-      if (typeof item.department === "object") {
-         formatedDepartment = item.department.value;
-      } else {
-         formatedDepartment = item.department;
-      }
-      return {
-         ...item,
-         firstName: item.firstName,
-         lastName: item.lastName,
-         startDay: startlocal,
-         department: formatedDepartment,
-         birthDay: birthlocal,
-         street: item.addressStreet,
-         city: item.addressCity,
-         state: item.addressState,
-         zipCode: item.addressZipcode,
-      };
-   });
+         if (item.birthDay) {
+            birthlocal = new Date(item.birthDay).toLocaleDateString();
+            // console.log("BIRTH ICI", birthlocal);
+         }
+         let startlocal; // Format startday
 
-   // console.log("testfinale", finalBouclage);
-   ////////////////////////////////////////////////////////////////////////////////
-   ////////////////////////////////////////////////////////////////////////////////
-   ////////////////////////////////////////////////////////////////////////////////
-   ////////////////////////////////////////////////////////////////////////////////
+         if (item.startDay) {
+            startlocal = new Date(item.startDay).toLocaleDateString();
+            // console.log("START ICI", startlocal);
+         }
+
+         let formatedDepartment;
+         if (typeof item.department === "object") {
+            formatedDepartment = item.department.value;
+         } else {
+            formatedDepartment = item.department;
+         }
+
+         return {
+            ...item,
+            firstName: item.firstName,
+            lastName: item.lastName,
+            startDay: startlocal,
+            department: formatedDepartment,
+            birthDay: birthlocal,
+            street: item.addressStreet,
+            city: item.addressCity,
+            state: item.addressState,
+            zipCode: item.addressZipcode,
+         };
+      });
+      return finalBouclage;
+   }
+
    ////////////////////////////////////////////////////////////////////////////////
    // let finalBouclage2 = finalBouclage.map((item) => Object.values(item));
    // console.log(finalBouclage2);
    ////////////////////////////////////////////////////////////////////////////////
-   ////////////////////////////////////////////////////////////////////////////////
-   ////////////////////////////////////////////////////////////////////////////////
-   ////////////////////////////////////////////////////////////////////////////////
-   ////////////////////////////////////////////////////////////////////////////////
-   // let firstFloor = finalBouclage[0];
-   // console.log(firstFloor);
-   ////////////////////////////////////////////////////////////////////////////////
+   const paginationPageSizeSelector = useMemo(() => {
+      return [200, 500, 1000];
+   }, []);
+
    return (
       <>
          <Header actualPage={"Home"} />
@@ -81,7 +80,7 @@ function Employees() {
             <section className="WHealth-GridSection">
                <h1 className="WHealth-Title">Employees</h1>
                <span className="employees-grid">
-                  <div id="selectTableLength">
+                  {/* <div id="selectTableLength">
                      Show&nbsp;
                      <select
                         id="table-length"
@@ -97,15 +96,15 @@ function Employees() {
                         <option value="100">100</option>
                      </select>
                      &nbsp;entries
-                  </div>
+                  </div> */}
                   <Grid
-                     // data={HumanRessources}
+                     data={HumanRessources}
                      // data={finalBouclage}
-                     data={() => {
-                        return new Promise((resolve) => {
-                           setTimeout(() => resolve(finalBouclage), 500);
-                        });
-                     }}
+                     // data={() => {
+                     //    return new Promise((resolve) => {
+                     //       setTimeout(() => resolve(finalBouclage), 500);
+                     //    });
+                     // }}
                      columns={[
                         "First Name",
                         "Last Name",
@@ -119,12 +118,10 @@ function Employees() {
                      ]}
                      search={true}
                      sort={true}
-                     pagination={
-                        (true,
-                        {
-                           limit: tableLength,
-                        })
-                     }
+                     // pagination={ limit: 2 ,  summary: false }
+                     pagination={true}
+                     paginationPageSizeSelector={paginationPageSizeSelector}
+                     paginationPageSize={10}
                   />
                </span>
             </section>
