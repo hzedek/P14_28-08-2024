@@ -10,88 +10,40 @@ import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the 
 import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the Data Grid
 
 function Employees() {
-   const [importedValues, setImportedValues] = useState([]);
-   ////////////////////////////////////////////////////////////////////////////////
+   // Initial Values
+   const [finalImport, setFinalImport] = useState();
+
    useEffect(() => {
-      initialFunction();
-      // bouclageFinal();
-   }, []);
-   ////////////////////////////////////////////////////////////////////////////////
-   ////////////////////////////////////////////////////////////////////////////////
-   // Function Initiale :
-   const initialFunction = () => {
+      if (finalImport === undefined) {
+         masterFiltering();
+      }
+   }, [finalImport]);
+
+   function masterFiltering() {
+      let stockageLocal = [];
       for (let i = 0; i < localStorage.length; i++) {
          let currentKey = localStorage.key(i);
          let stockage = localStorage.getItem(currentKey);
          let stockageParsed = JSON.parse(stockage);
-         setImportedValues((previousArray) => [
-            ...previousArray,
-            stockageParsed,
-         ]);
+         stockageLocal.push(stockageParsed);
       }
-   };
-   ////////////////////////////////////////////////////////////////////////////////
-   ////////////////////////////////////////////////////////////////////////////////
-   const [finalBouclage, setFinalBouclage] = useState();
-   // let finalBouclage;
-   function bouclageFinal() {
-      importedValues.map((item) => {
-         let birthlocal; // Format birthday
+      stockageLocal.forEach((item) => {
          if (item.birthDay) {
-            birthlocal = new Date(item.birthDay).toLocaleDateString();
-            // console.log("BIRTH ICI", birthlocal);
+            item.birthDay = new Date(item.birthDay).toLocaleDateString();
          }
-         let startlocal; // Format startday
          if (item.startDay) {
-            startlocal = new Date(item.startDay).toLocaleDateString();
-            // console.log("START ICI", startlocal);
+            item.startDay = new Date(item.startDay).toLocaleDateString();
          }
-
-         let formatedDepartment;
          if (typeof item.department === "object") {
-            formatedDepartment = item.department.value;
-         } else {
-            formatedDepartment = item.department;
+            item.department = item.department.value;
          }
-
-         return {
-            ...item,
-            firstName: item.firstName,
-            lastName: item.lastName,
-            startDay: startlocal,
-            department: formatedDepartment,
-            birthDay: birthlocal,
-            street: item.addressStreet,
-            city: item.addressCity,
-            state: item.addressState,
-            zipCode: item.addressZipcode,
-         };
       });
+      setFinalImport(stockageLocal);
    }
-   // setFinalBouclage(bouclageFinal());
 
-   ////////////////////////////////////////////////////////////////////////////////
-   // let finalBouclage2 = finalBouclage.map((item) => Object.values(item));
-   // console.log(finalBouclage2);
-   ////////////////////////////////////////////////////////////////////////////////
-
-   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    const GridExample = () => {
-      // Row Data: The data to be displayed.
-      const [rowData, setRowData] = useState([
-         {
-            firstName: "Louis",
-            lastName: "MacKevin",
-            startDay: "01/01/2025",
-            department: "Engineer",
-            birthDay: "20/09/2001",
-            street: "Rue de la Chancellerie",
-            city: "Madrid",
-            state: "Alaska",
-            zipCode: 54000,
-         },
-      ]);
+      // Row Data: The data to be displayed
+      const [rowData, setRowData] = useState(finalImport);
 
       // Column Definitions: Defines the columns to be displayed.
       const [colDefs, setColDefs] = useState([
@@ -100,10 +52,10 @@ function Employees() {
          { headerName: "Start Day", field: "startDay" },
          { headerName: "Department", field: "department" },
          { headerName: "Birth Day", field: "birthDay" },
-         { headerName: "Street", field: "street" },
-         { headerName: "City", field: "city" },
-         { headerName: "State", field: "state" },
-         { headerName: "Zip Code", field: "zipCode" },
+         { headerName: "Street", field: "addressStreet" },
+         { headerName: "City", field: "addressCity" },
+         { headerName: "State", field: "addressState" },
+         { headerName: "Zip Code", field: "addressZipcode" },
       ]);
 
       const paginationPageSizeSelector = useMemo(() => {
@@ -126,8 +78,7 @@ function Employees() {
          </div>
       );
    };
-   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
    return (
       <>
          <Header actualPage={"Home"} />
@@ -136,32 +87,6 @@ function Employees() {
                <h1 className="WHealth-Title">Employees</h1>
                <span className="employees-grid">
                   <GridExample />
-                  {/* <Grid
-                     data={HumanRessources}
-                     // data={finalBouclage}
-                     // data={() => {
-                     //    return new Promise((resolve) => {
-                     //       setTimeout(() => resolve(finalBouclage), 500);
-                     //    });
-                     // }}
-                     columns={[
-                        "First Name",
-                        "Last Name",
-                        "Birth Day",
-                        "Start Day",
-                        "Street",
-                        "City",
-                        "State",
-                        "Zip Code",
-                        "Department",
-                     ]}
-                     search={true}
-                     sort={true}
-                     pagination={ limit: 2 ,  summary: false }
-                     // pagination={true}
-                     paginationPageSizeSelector={paginationPageSizeSelector}
-                     paginationPageSize={tableLength}
-                  /> */}
                </span>
             </section>
          </main>
