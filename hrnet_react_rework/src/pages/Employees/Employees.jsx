@@ -5,38 +5,43 @@ import HumanRessources from "../../../src/data/formdata.json";
 import Header from "../../components/Header/Header.jsx";
 import { useEffect, useMemo, useState } from "react";
 
+import { AgGridReact } from "ag-grid-react"; // React Data Grid Component
+import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the Data Grid
+import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the Data Grid
+
 function Employees() {
-   const [tableLength, setTableLength] = useState(5);
-   const [localImportedValues, setLocalImportedValues] = useState([]);
+   const [importedValues, setImportedValues] = useState([]);
    ////////////////////////////////////////////////////////////////////////////////
    useEffect(() => {
       initialFunction();
-      bouclageFinal();
+      // bouclageFinal();
    }, []);
-
+   ////////////////////////////////////////////////////////////////////////////////
+   ////////////////////////////////////////////////////////////////////////////////
    // Function Initiale :
    const initialFunction = () => {
       for (let i = 0; i < localStorage.length; i++) {
          let currentKey = localStorage.key(i);
          let stockage = localStorage.getItem(currentKey);
          let stockageParsed = JSON.parse(stockage);
-         setLocalImportedValues((previousArray) => [
+         setImportedValues((previousArray) => [
             ...previousArray,
             stockageParsed,
          ]);
       }
    };
-   let finalBouclage;
+   ////////////////////////////////////////////////////////////////////////////////
+   ////////////////////////////////////////////////////////////////////////////////
+   const [finalBouclage, setFinalBouclage] = useState();
+   // let finalBouclage;
    function bouclageFinal() {
-      finalBouclage = localImportedValues.map((item) => {
+      importedValues.map((item) => {
          let birthlocal; // Format birthday
-
          if (item.birthDay) {
             birthlocal = new Date(item.birthDay).toLocaleDateString();
             // console.log("BIRTH ICI", birthlocal);
          }
          let startlocal; // Format startday
-
          if (item.startDay) {
             startlocal = new Date(item.startDay).toLocaleDateString();
             // console.log("START ICI", startlocal);
@@ -62,17 +67,67 @@ function Employees() {
             zipCode: item.addressZipcode,
          };
       });
-      return finalBouclage;
    }
+   // setFinalBouclage(bouclageFinal());
 
    ////////////////////////////////////////////////////////////////////////////////
    // let finalBouclage2 = finalBouclage.map((item) => Object.values(item));
    // console.log(finalBouclage2);
    ////////////////////////////////////////////////////////////////////////////////
-   const paginationPageSizeSelector = useMemo(() => {
-      return [200, 500, 1000];
-   }, []);
 
+   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   const GridExample = () => {
+      // Row Data: The data to be displayed.
+      const [rowData, setRowData] = useState([
+         {
+            firstName: "Louis",
+            lastName: "MacKevin",
+            startDay: "01/01/2025",
+            department: "Engineer",
+            birthDay: "20/09/2001",
+            street: "Rue de la Chancellerie",
+            city: "Madrid",
+            state: "Alaska",
+            zipCode: 54000,
+         },
+      ]);
+
+      // Column Definitions: Defines the columns to be displayed.
+      const [colDefs, setColDefs] = useState([
+         { headerName: "First Name", field: "firstName" },
+         { headerName: "Last Name", field: "lastName" },
+         { headerName: "Start Day", field: "startDay" },
+         { headerName: "Department", field: "department" },
+         { headerName: "Birth Day", field: "birthDay" },
+         { headerName: "Street", field: "street" },
+         { headerName: "City", field: "city" },
+         { headerName: "State", field: "state" },
+         { headerName: "Zip Code", field: "zipCode" },
+      ]);
+
+      const paginationPageSizeSelector = useMemo(() => {
+         return [5, 10, 25, 50, 100];
+      }, []);
+
+      return (
+         // wrapping container with theme & size
+         <div
+            className="ag-theme-quartz" // applying the Data Grid theme
+            style={{ height: 500 }} // the Data Grid will fill the size of the parent container
+         >
+            <AgGridReact
+               rowData={rowData}
+               columnDefs={colDefs}
+               pagination={true}
+               paginationPageSize={5}
+               paginationPageSizeSelector={paginationPageSizeSelector}
+            />
+         </div>
+      );
+   };
+   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    return (
       <>
          <Header actualPage={"Home"} />
@@ -80,24 +135,8 @@ function Employees() {
             <section className="WHealth-GridSection">
                <h1 className="WHealth-Title">Employees</h1>
                <span className="employees-grid">
-                  {/* <div id="selectTableLength">
-                     Show&nbsp;
-                     <select
-                        id="table-length"
-                        onSelect={(e) => {
-                           console.log(e.target.value);
-                           setTableLength(e.target.value);
-                        }}
-                     >
-                        <option value="5">5</option>
-                        <option value="10">10</option>
-                        <option value="25">25</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                     </select>
-                     &nbsp;entries
-                  </div> */}
-                  <Grid
+                  <GridExample />
+                  {/* <Grid
                      data={HumanRessources}
                      // data={finalBouclage}
                      // data={() => {
@@ -118,11 +157,11 @@ function Employees() {
                      ]}
                      search={true}
                      sort={true}
-                     // pagination={ limit: 2 ,  summary: false }
-                     pagination={true}
+                     pagination={ limit: 2 ,  summary: false }
+                     // pagination={true}
                      paginationPageSizeSelector={paginationPageSizeSelector}
-                     paginationPageSize={10}
-                  />
+                     paginationPageSize={tableLength}
+                  /> */}
                </span>
             </section>
          </main>
