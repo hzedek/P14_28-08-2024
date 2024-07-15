@@ -1,18 +1,17 @@
 import "./Employees.scss";
 // import HumanRessources from "../../../src/data/formdata.json";
 import Header from "../../components/Header/Header.jsx";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 // AG-GRID
 import { AgGridReact } from "ag-grid-react"; // React Data Grid Component
 import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the Data Grid
 import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the Data Grid
 
-//
-
 function Employees() {
    // Initial Values
    const [finalImport, setFinalImport] = useState();
 
+   // Loading Initial Values
    useEffect(() => {
       if (finalImport === undefined) {
          masterFiltering();
@@ -43,14 +42,19 @@ function Employees() {
       });
       setFinalImport(stockageLocal);
    }
-   /////////////
+   /////////////////////////////////////////////////////////////////////////////////
+   const gridRef = useRef();
+   const onSearchFilterContentChanged = useCallback(() => {
+      gridRef.current.api.setGridOption(
+         "quickFilterText",
+         document.getElementById("filter-text-box").value
+      );
+   });
 
    /////////////////////////////////////////////////////////////////////////////////
-   /////////////////////////////////////////////////////////////////////////////////
-   const GridExample = () => {
+   const GridTable = () => {
       // Row Data: The data to be displayed
       const [rowData, setRowData] = useState(finalImport);
-
       // Column Definitions: Defines the columns to be displayed.
       const [colDefs, setColDefs] = useState([
          { headerName: "First Name", field: "firstName", flex: 1 },
@@ -69,17 +73,29 @@ function Employees() {
       }, []);
 
       return (
-         <div
-            className="ag-theme-quartz" // Data Grid theme
-            style={{ height: 500 }} // Data Grid size of parent container
-         >
-            <AgGridReact
-               rowData={rowData}
-               columnDefs={colDefs}
-               pagination={true}
-               paginationPageSize={5}
-               paginationPageSizeSelector={paginationPageSizeSelector}
-            />
+         <div className="example-wrapper">
+            <div className="example-header">
+               <span>Quick Filter:</span>
+               <input
+                  type="text"
+                  id="filter-text-box"
+                  placeholder="Filter..."
+                  onInput={onSearchFilterContentChanged}
+               />
+            </div>
+            <div
+               className="ag-theme-quartz" // Data Grid theme
+               style={{ height: 500 }} // Data Grid size of parent container
+            >
+               <AgGridReact
+                  rowData={rowData}
+                  columnDefs={colDefs}
+                  pagination={true}
+                  paginationPageSize={5}
+                  paginationPageSizeSelector={paginationPageSizeSelector}
+                  ref={gridRef}
+               />
+            </div>
          </div>
       );
    };
@@ -93,7 +109,7 @@ function Employees() {
             <section className="WHealth-GridSection">
                <h1 className="WHealth-Title">Employees</h1>
                <span className="employees-grid">
-                  <GridExample />
+                  <GridTable />
                </span>
             </section>
          </main>
