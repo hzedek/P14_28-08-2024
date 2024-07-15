@@ -1,13 +1,13 @@
 import "./Employees.scss";
-import { Grid } from "gridjs-react";
-import "gridjs/dist/theme/mermaid.css";
-import HumanRessources from "../../../src/data/formdata.json";
+// import HumanRessources from "../../../src/data/formdata.json";
 import Header from "../../components/Header/Header.jsx";
 import { useEffect, useMemo, useState } from "react";
-
+// AG-GRID
 import { AgGridReact } from "ag-grid-react"; // React Data Grid Component
 import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the Data Grid
 import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the Data Grid
+
+//
 
 function Employees() {
    // Initial Values
@@ -19,7 +19,9 @@ function Employees() {
       }
    }, [finalImport]);
 
+   // Function for Data filtering
    function masterFiltering() {
+      // Push Data from localStorage to this Array
       let stockageLocal = [];
       for (let i = 0; i < localStorage.length; i++) {
          let currentKey = localStorage.key(i);
@@ -27,6 +29,7 @@ function Employees() {
          let stockageParsed = JSON.parse(stockage);
          stockageLocal.push(stockageParsed);
       }
+      // Edit birthDay & startDay format of values + Choose department correct format
       stockageLocal.forEach((item) => {
          if (item.birthDay) {
             item.birthDay = new Date(item.birthDay).toLocaleDateString();
@@ -40,22 +43,25 @@ function Employees() {
       });
       setFinalImport(stockageLocal);
    }
+   /////////////
 
+   /////////////////////////////////////////////////////////////////////////////////
+   /////////////////////////////////////////////////////////////////////////////////
    const GridExample = () => {
       // Row Data: The data to be displayed
       const [rowData, setRowData] = useState(finalImport);
 
       // Column Definitions: Defines the columns to be displayed.
       const [colDefs, setColDefs] = useState([
-         { headerName: "First Name", field: "firstName" },
-         { headerName: "Last Name", field: "lastName" },
-         { headerName: "Start Day", field: "startDay" },
-         { headerName: "Department", field: "department" },
-         { headerName: "Birth Day", field: "birthDay" },
-         { headerName: "Street", field: "addressStreet" },
-         { headerName: "City", field: "addressCity" },
-         { headerName: "State", field: "addressState" },
-         { headerName: "Zip Code", field: "addressZipcode" },
+         { headerName: "First Name", field: "firstName", flex: 1 },
+         { headerName: "Last Name", field: "lastName", flex: 1 },
+         { headerName: "Start Day", field: "startDay", flex: 1 },
+         { headerName: "Department", field: "department", flex: 1 },
+         { headerName: "Birth Day", field: "birthDay", flex: 1 },
+         { headerName: "Street", field: "addressStreet", flex: 1 },
+         { headerName: "City", field: "addressCity", flex: 1 },
+         { headerName: "State", field: "addressState", flex: 1 },
+         { headerName: "Zip Code", field: "addressZipcode", flex: 1 },
       ]);
 
       const paginationPageSizeSelector = useMemo(() => {
@@ -63,10 +69,9 @@ function Employees() {
       }, []);
 
       return (
-         // wrapping container with theme & size
          <div
-            className="ag-theme-quartz" // applying the Data Grid theme
-            style={{ height: 500 }} // the Data Grid will fill the size of the parent container
+            className="ag-theme-quartz" // Data Grid theme
+            style={{ height: 500 }} // Data Grid size of parent container
          >
             <AgGridReact
                rowData={rowData}
@@ -78,6 +83,8 @@ function Employees() {
          </div>
       );
    };
+   /////////////////////////////////////////////////////////////////////////////////
+   /////////////////////////////////////////////////////////////////////////////////
 
    return (
       <>
