@@ -73,9 +73,9 @@ function Employees() {
       }, []);
 
       return (
-         <div className="example-wrapper">
-            <div className="example-header">
-               <span>Quick Filter:</span>
+         <div className="aggrid-wrapper">
+            <div className="aggrid-search-header">
+               <span>Search : </span>
                <input
                   type="text"
                   id="filter-text-box"
