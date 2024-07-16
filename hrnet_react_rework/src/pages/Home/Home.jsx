@@ -65,9 +65,14 @@ function Home() {
    /////////////////////////////////////////////////////////////////////////
    /////////////////////////////////////////////////////////////////////////
    // ENVOI DU FORMULAIRE VIA SETUP EN LOCALSTORAGE
+   const [localValue, setLocalValue] = useState(localStorage.length);
    const submitForm = () => {
-      console.log("FINAL VALUES OF FORM", formValues);
-      localStorage.setItem("Form Result", JSON.stringify(formValues));
+      setLocalValue(localValue + 1);
+      localStorage.setItem(
+         `Form Result n°${localValue}`,
+         JSON.stringify(formValues)
+      );
+      console.log("---FINAL FORM---", formValues);
    };
 
    return (
