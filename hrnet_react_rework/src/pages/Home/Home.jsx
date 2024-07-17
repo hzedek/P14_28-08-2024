@@ -1,5 +1,6 @@
 import "./Home.scss";
-import { useState } from "react";
+import Header from "../../components/Header/Header.jsx";
+import { useEffect, useState } from "react";
 import { states } from "../../data/states.json";
 // DATEPICKER
 import DatePicker from "react-datepicker";
@@ -10,90 +11,76 @@ import "react-dropdown/style.css";
 /////////////////////////////////////////////////////////////////////////////////
 // NPM LEWISMODAL : IMPORT
 // import Modal, { openModal, closeModal } from "../../components/Modal/Modal";
-import Modal, { openModal } from "lewismodal";
-//
-//
-
-// FUNCTIONS OPEN/CLOSE MODAL
-// function openModal() {
-//    document.getElementById("validationModal").style.display = "block";
-// }
-// function closeModal() {
-//    document.getElementById("validationModal").style.display = "none";
-// }
-/////////////////////////////////////////////////////////////////////////////////
-// DEPARTMENT : SETUP
-const departmentCategories = [
-   "Sales",
-   "Marketing",
-   "Engineering",
-   "Human Resources",
-   "Legal",
-];
-// INITIAL FORM VALUES : SETUP
-const initialValues = {
-   firstName: "",
-   lastName: "",
-   birthDay: new Date(),
-   startDay: new Date(),
-   addressStreet: "",
-   addressCity: "",
-   addressState: "",
-   addressZipcode: "",
-   department: "",
-};
+import LewisModal, { openModal } from "lewismodal";
 
 function Home() {
-   // INITIAL FORM VALUES
+   /////////////////////////////////////////////////////////////////////////
+   // DEPARTMENTS : catégories de métiers
+   const departmentCategories = [
+      "Sales",
+      "Marketing",
+      "Engineering",
+      "Human Resources",
+      "Legal",
+   ];
+   /////////////////////////////////////////////////////////////////////////
+   // INITIAL FORM VALUES : valeurs des champs du formulaire
+   const initialValues = {
+      firstName: "",
+      lastName: "",
+      birthDay: new Date(),
+      startDay: new Date(),
+      addressStreet: "",
+      addressCity: "",
+      addressState: "",
+      addressZipcode: "",
+      department: "",
+   };
+   /////////////////////////////////////////////////////////////////////////
+   // FORM VALUES : valeurs ajoutées au formulaire
    const [formValues, setFormValues] = useState(initialValues);
-   // EDIT FORM VALUES ONCHANGE() FOR EACH INPUT
+   /////////////////////////////////////////////////////////////////////////
+   // EDIT FORM VALUES ONCHANGE() : à chaque edit d'un champ, met à jour le formulaire
    const handleInputChange = (e) => {
       e.preventDefault();
+      // Attributs + Update des valeurs visées dans le formulaire
       const { name, value } = e.target;
       setFormValues({
          ...formValues,
          [name]: value,
       });
    };
+   /////////////////////////////////////////////////////////////////////////
+   // LISTING DES ETATS : 2 catégories, Nom + Abbréviation
+   const etatsunisNameOnly = states.map((state) => [[state.name]]);
+   const etatsunisAbbrOnly = states.map((state) => [[state.abbreviation]]);
+   // ETAT CHOISI DANS LA LISTE :
+   const [selectedState, setSelectedState] = useState(); // Valeur du CHOIX dans la liste
+   const [stateName, setStateName] = useState(); // Valeur du champ "VALUE" par le useState ci-dessus ^
+   // REFRESH DU CHOIX D'ETAT
+   useEffect(() => {
+      // console.log("update of SelectedState: ", selectedState);
+      return setStateName(selectedState);
+   }, []);
+   /////////////////////////////////////////////////////////////////////////
+   /////////////////////////////////////////////////////////////////////////
    // ENVOI DU FORMULAIRE VIA SETUP EN LOCALSTORAGE
+   const [localValue, setLocalValue] = useState(localStorage.length);
    const submitForm = () => {
-      console.log("FINAL VALUES OF FORM", formValues);
+      setLocalValue(localValue + 1);
       localStorage.setItem(
-         `${formValues.firstName}`,
+         `Form Result n°${localValue}`,
          JSON.stringify(formValues)
       );
+      console.log("---FINAL FORM---", formValues);
    };
 
    return (
       <>
-         <header id="WHealth-Header">
-            <div id="WHealth-Logo-Container_Employees">
-               <img
-                  id="WHealth-Logo"
-                  src="./src/assets/WHealthLogoEdited.png"
-                  alt="Logo WealthHealth"
-                  onClick={() => (location.href = "/")}
-               />
-            </div>
-            <a id="WHealth-LinkBtn" href="/employees">
-               View Employees
-            </a>
-         </header>
+         <Header actualPage={"View Employees"} />
          <main>
-            <Modal />
-            {/*
-               *******************************
-               *** THIS IS THE LOCAL MODAL ***
-               *******************************
-                  <div id="validationModal">
-                     <button id="closeValidationModal" onClick={closeModal}></button>
-                     <div id="confirmation">Employee Created !</div>
-                  </div>
-               *****************************
-               *** THIS IS THE NPM MODAL ***
-               *****************************
-               */}
-
+            {/* NPM LEWISMODAL */}
+            <LewisModal />
             <section className="WHealth-FormSection">
                <h1 className="WHealth-Title">Create Employee</h1>
                <form
@@ -130,12 +117,12 @@ function Home() {
                      type="date"
                      className="HrnetDatePickers"
                      selected={formValues.birthDay}
-                     onSelect={(date) =>
+                     onChange={(date) => {
                         setFormValues({
                            ...formValues,
                            ["birthDay"]: date,
-                        })
-                     }
+                        });
+                     }}
                      dateFormat="dd/MM/yyyy"
                      format="dd-MM-y"
                      name="birthDay"
@@ -150,12 +137,12 @@ function Home() {
                      type="date"
                      className="HrnetDatePickers"
                      selected={formValues.startDay}
-                     onSelect={(date) =>
+                     onChange={(date) => {
                         setFormValues({
                            ...formValues,
                            ["startDay"]: date,
-                        })
-                     }
+                        });
+                     }}
                      dateFormat="dd/MM/yyyy"
                      format="dd-MM-y"
                      name="startDay"
@@ -193,20 +180,21 @@ function Home() {
                      <label>State</label>
                      <Dropdown
                         className="HrnetDropdown"
-                        options={states.map((state, index) => [
-                           (state.value = index),
-                           state.name,
-                        ])}
-                        value={formValues.addressState}
+                        options={etatsunisNameOnly}
+                        value={stateName}
                         name="addressState"
                         placeholder={"Select a state..."}
                         required={true}
                         // ICI, ON RECUPERE L'INDEX DE L'ETAT AVANT D'EN PRENDRE SON ABBREVIATION
                         onChange={(state) => {
+                           // Index Value
+                           let index = etatsunisNameOnly.indexOf(state.value);
+                           // STATE NAME:
+                           setSelectedState(state.value[0]);
+                           // STATE NAME ABBREVIATION : Value added to <FORM/> !
                            setFormValues({
                               ...formValues,
-                              ["addressState"]:
-                                 states[state.value[0]].abbreviation,
+                              ["addressState"]: etatsunisAbbrOnly[index][0], // ABBREVIATION OF STATE'S NAME
                            });
                         }}
                      />
@@ -236,7 +224,7 @@ function Home() {
                      onChange={(department) =>
                         setFormValues({
                            ...formValues,
-                           ["department"]: department,
+                           ["department"]: department.value,
                         })
                      }
                   />
