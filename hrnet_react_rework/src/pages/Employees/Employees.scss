@@ -23,8 +23,16 @@
 }
 
 .aggrid-search-header {
+   font-size: 15px;
    background-color: white;
-   padding: 5px;
+   padding: 5px 10px;
+   border-radius: 5px;
+   border: 1px solid rgb(200, 200, 200);
+   margin-bottom: -1px;
+}
+
+#filter-text-box {
+   border-color: darkgray;
 }
 
 .gridjs-search::before {

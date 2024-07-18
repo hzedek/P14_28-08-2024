@@ -9,9 +9,13 @@ import "react-datepicker/dist/react-datepicker.css";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 /////////////////////////////////////////////////////////////////////////////////
-// NPM LEWISMODAL : IMPORT
-// import Modal, { openModal, closeModal } from "../../components/Modal/Modal";
+// NPM LEWISMODAL
 import LewisModal, { openModal } from "lewismodal";
+// ------------------------------------------------
+// LOCAL LEWISMODAL
+// import LewisModal, {
+//    openModal,
+// } from "../../../../../LewisModal/src/components/Modal.jsx";
 
 function Home() {
    /////////////////////////////////////////////////////////////////////////
@@ -81,6 +85,38 @@ function Home() {
          <main>
             {/* NPM LEWISMODAL */}
             <LewisModal />
+            {/* ------------------------- */}
+            {/* ------------------------- */}
+            {/* ------------------------- */}
+            {/* NPM LEWISMODAL CUSTOMIZED */}
+            {/* <LewisModal
+               modalMessage={"Fiche Client Réalisée !"}
+               modalFontSize={50}
+               modalFontColor={"white"}
+               modalWidth={50}
+               modalHeight={50}
+               modalTextAreaBgColor={"darkgreen"}
+               mBlue={100}
+               mGreen={50}
+               mRed={200}
+               mOpacity={66}
+            /> */}
+            {/* ------------------------- */}
+            {/* ------------------------- */}
+            {/* ------------------------- */}
+            {/* LOCAL LEWISMODAL CUSTOMIZED */}
+            {/* <LewisModal
+               modalMessage={"Fiche créée avec LewisModal local"}
+               modalFontSize={22}
+               modalFontColor={"black"}
+               modalWidth={25}
+               modalHeight={25}
+               modalTextAreaBgColor={"purple"}
+               mBlue={200}
+               mGreen={200}
+               mRed={200}
+               mOpacity={75}
+            /> */}
             <section className="WHealth-FormSection">
                <h1 className="WHealth-Title">Create Employee</h1>
                <form

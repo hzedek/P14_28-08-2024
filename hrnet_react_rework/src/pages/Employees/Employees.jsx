@@ -79,7 +79,7 @@ function Employees() {
                <input
                   type="text"
                   id="filter-text-box"
-                  placeholder="Filter..."
+                  // placeholder="Filter..."
                   onInput={onSearchFilterContentChanged}
                />
             </div>
