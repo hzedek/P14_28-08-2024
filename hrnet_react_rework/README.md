@@ -1,6 +1,6 @@
-[![forthebadge](https://forthebadge.com/images/badges/license-mit.svg)](https://forthebadge.com)[![forthebadge](https://forthebadge.com/images/badges/made-with-react.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/uses-html.svg)](https://forthebadge.com)[![forthebadge](https://forthebadge.com/images/badges/uses-css.svg)](https://forthebadge.com)[![forthebadge](https://forthebadge.com/images/badges/made-with-react.svg)](https://forthebadge.com)
 
-# HRNET React : The dynamic, React version of your Human Ressources' website.
+# HRNET React : The dynamic version of YOUR Human Ressources app. Powered with React.
 
 Text of HRNET
 
