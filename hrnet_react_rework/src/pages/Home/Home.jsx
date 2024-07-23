@@ -84,14 +84,14 @@ function Home() {
          <Header actualPage={"View Employees"} />
          <main>
             {/* NPM LEWISMODAL */}
-            <LewisModal />
+            {/* <LewisModal /> */}
             {/* ------------------------- */}
             {/* ------------------------- */}
             {/* ------------------------- */}
             {/* NPM LEWISMODAL CUSTOMIZED */}
-            {/* <LewisModal
+            <LewisModal
                modalMessage={"Fiche Client Réalisée !"}
-               modalFontSize={50}
+               modalFontSize={60}
                modalFontColor={"white"}
                modalWidth={50}
                modalHeight={50}
@@ -100,23 +100,8 @@ function Home() {
                mGreen={50}
                mRed={200}
                mOpacity={66}
-            /> */}
-            {/* ------------------------- */}
-            {/* ------------------------- */}
-            {/* ------------------------- */}
-            {/* LOCAL LEWISMODAL CUSTOMIZED */}
-            {/* <LewisModal
-               modalMessage={"Fiche créée avec LewisModal local"}
-               modalFontSize={22}
-               modalFontColor={"black"}
-               modalWidth={25}
-               modalHeight={25}
-               modalTextAreaBgColor={"purple"}
-               mBlue={200}
-               mGreen={200}
-               mRed={200}
-               mOpacity={75}
-            /> */}
+            />
+
             <section className="WHealth-FormSection">
                <h1 className="WHealth-Title">Create Employee</h1>
                <form
