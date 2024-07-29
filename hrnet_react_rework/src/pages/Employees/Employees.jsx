@@ -6,8 +6,14 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AgGridReact } from "ag-grid-react"; // React Data Grid Component
 import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the Data Grid
 import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the Data Grid
+////////////////////////////////////////////////////////////////////////////
+import { useSelector, useDispatch } from "react-redux";
+import { getForm } from "../../redux/selectors.js";
+import { setForm } from "../../redux/slices/formulaire/formulaireSlice.js";
 
 function Employees() {
+   const form = useSelector(getForm);
+
    // Initial Values
    const [finalImport, setFinalImport] = useState();
 
@@ -22,25 +28,42 @@ function Employees() {
    function masterFiltering() {
       // Push Data from localStorage to this Array
       let stockageLocal = [];
-      for (let i = 0; i < localStorage.length; i++) {
-         let currentKey = localStorage.key(i);
-         let stockage = localStorage.getItem(currentKey);
-         let stockageParsed = JSON.parse(stockage);
-         stockageLocal.push(stockageParsed);
-      }
-      // Edit birthDay & startDay format of values + Choose department correct format
-      stockageLocal.forEach((item) => {
-         if (item.birthDay) {
-            item.birthDay = new Date(item.birthDay).toLocaleDateString();
-         }
-         if (item.startDay) {
-            item.startDay = new Date(item.startDay).toLocaleDateString();
-         }
-         if (typeof item.department === "object") {
-            item.department = item.department.value;
-         }
-      });
+      // console.log("form brut", console.log(form.birthDay));
+      console.log("test birth", form.birthDay);
+      stockageLocal.push(form);
+
+      console.log("localstorage", stockageLocal);
+      // for (let i = 0; i < form.length; i++) {
+      //    let currentKey = form.key(i);
+      //    let stockage = form.getItem(currentKey);
+      //    let stockageParsed = JSON.parse(stockage);
+      //    stockageLocal.push(stockageParsed);
+      // }
+      // // Edit birthDay & startDay format of values + Choose department correct format
+      ////////////////////////////////////////////////////////////////////////////////////
+      // stockageLocal.forEach((item) => {
+      //    if (item.birthDay) {
+      //       let edited = new Date("fr-FR");
+      //       edited = new Date(item.birthDay).toLocaleDateString();
+      //       item.birthDay = edited;
+      //       console.log("OUIIII : Birthday", edited);
+      //    }
+      //    if (item.startDay) {
+      //       let edited2 = new Date("fr-FR");
+      //       edited2 = new Date(item.startDay).toLocaleDateString();
+      //       item.birthDay = edited2;
+      //       console.log("OUIIII : Start", edited2);
+      //    }
+      //    if (typeof item.department === "object") {
+      //       item.department = item.department.value;
+      //    }
+      //    // console.log("item", item.birthDay);
+      // });
+      // console.log("birthday", stockageLocal[0].birthDay);
+      // console.log(form);
       setFinalImport(stockageLocal);
+      // let stockageLocal = [];
+      // console.log("form", form);
    }
    /////////////////////////////////////////////////////////////////////////////////
    const gridRef = useRef();

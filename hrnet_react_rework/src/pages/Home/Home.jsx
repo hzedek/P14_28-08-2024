@@ -23,8 +23,8 @@ import { setForm } from "../../redux/slices/formulaire/formulaireSlice.js";
 
 function Home() {
    // Setup SELECTOR du form
-   const form = useSelector(getForm);
-   console.log("form test", form);
+
+   // console.log("form test", form);
 
    /**
     * USESELECTOR : Un simple "fetch" de data
@@ -33,6 +33,7 @@ function Home() {
     * 1) const dispatch = useDispatch();
     * 2) dispatch(setForm(xx));
     */
+   const dispatch = useDispatch();
 
    /////////////////////////////////////////////////////////////////////////
    // DEPARTMENTS : catégories de métiers
@@ -92,6 +93,7 @@ function Home() {
       //    `Form Result n°${localValue}`,
       //    JSON.stringify(formValues)
       // );
+      dispatch(setForm(formValues));
       console.log("---FINAL FORM---", formValues);
    };
 
@@ -159,6 +161,7 @@ function Home() {
                            ...formValues,
                            ["birthDay"]: date,
                         });
+                        console.log("BIRTH", date);
                      }}
                      dateFormat="dd/MM/yyyy"
                      format="dd-MM-y"
@@ -179,6 +182,7 @@ function Home() {
                            ...formValues,
                            ["startDay"]: date,
                         });
+                        console.log("START", date);
                      }}
                      dateFormat="dd/MM/yyyy"
                      format="dd-MM-y"
