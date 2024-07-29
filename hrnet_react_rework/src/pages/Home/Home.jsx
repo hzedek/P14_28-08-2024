@@ -16,8 +16,24 @@ import LewisModal, { openModal } from "lewismodal";
 // import LewisModal, {
 //    openModal,
 // } from "../../../../../LewisModal/src/components/Modal.jsx";
+////////////////////////////////////////////////////////////////////////////
+import { useSelector, useDispatch } from "react-redux";
+import { getForm } from "../../redux/selectors.js";
+import { setForm } from "../../redux/slices/formulaire/formulaireSlice.js";
 
 function Home() {
+   // Setup SELECTOR du form
+   const form = useSelector(getForm);
+   console.log("form test", form);
+
+   /**
+    * USESELECTOR : Un simple "fetch" de data
+    *
+    * USEDISPATCH : Applique la fonction
+    * 1) const dispatch = useDispatch();
+    * 2) dispatch(setForm(xx));
+    */
+
    /////////////////////////////////////////////////////////////////////////
    // DEPARTMENTS : catégories de métiers
    const departmentCategories = [
@@ -72,10 +88,10 @@ function Home() {
    const [localValue, setLocalValue] = useState(localStorage.length);
    const submitForm = () => {
       setLocalValue(localValue + 1);
-      localStorage.setItem(
-         `Form Result n°${localValue}`,
-         JSON.stringify(formValues)
-      );
+      // localStorage.setItem(
+      //    `Form Result n°${localValue}`,
+      //    JSON.stringify(formValues)
+      // );
       console.log("---FINAL FORM---", formValues);
    };
 

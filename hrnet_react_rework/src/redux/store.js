@@ -24,13 +24,14 @@ const rootReducer = combineReducers({
 // PERSIST REDUCER
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-// EXPORTS
+// EXPORTS : store & persistor
 export const store = configureStore({
    reducer: persistedReducer,
-   // REMOVE DEFAULT ERROR CHECKER
-   // middleware: (getDefaultMiddleware) =>
-   //    getDefaultMiddleware({
-   //       serializableCheck: false,
-   //    }),
+
+   // REMOVE DEFAULT ERROR CHECKER :
+   middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({
+         serializableCheck: false,
+      }),
 });
 export const persistor = persistStore(store);
