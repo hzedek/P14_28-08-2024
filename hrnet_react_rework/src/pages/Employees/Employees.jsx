@@ -29,10 +29,41 @@ function Employees() {
       // Push Data from localStorage to this Array
       let stockageLocal = [];
       // console.log("form brut", console.log(form.birthDay));
-      console.log("test birth", form.birthDay);
-      stockageLocal.push(form);
+      // console.log("test birth", form);
 
-      console.log("localstorage", stockageLocal);
+      // console.log("localstorage", stockageLocal[0]);
+
+      form.forEach((item) => {
+         if (item.birthDay) {
+            // console.log(item.birthDay);
+            // item.birthDay = new Date(item.birthDay).toLocaleDateString();
+            // let edited = new Date("fr-FR");
+            // edited = new Date(item.birthDay).toLocaleDateString();
+            // item.birthDay = edited;
+            // console.log("OUIIII : Birthday", edited);
+            // stockageLocal.push(item.birthDay);
+            // let editedDate = item.birthDay.toLocaleDateString()
+            // stockageLocal
+            // item.birthDay = new Date(item.birthDay).toLocaleDateString();
+         }
+         if (item.startDay) {
+            // console.log(item.startDay);
+            // item.startDay = new Date(item.startDay).toLocaleDateString();
+            // let edited2 = new Date("fr-FR");
+            // edited2 = new Date(item.startDay).toLocaleDateString();
+            // item.birthDay = edited2;
+            // console.log("OUIIII : Start", edited2);
+            // stockageLocal.push(item.startDay);
+            // item.startDay = new Date(item.startDay).toLocaleDateString();
+         }
+         if (typeof item.department === "object") {
+            item.department = item.department.value;
+         }
+         stockageLocal.push(item);
+      });
+
+      // stockageLocal.push(form);
+
       // for (let i = 0; i < form.length; i++) {
       //    let currentKey = form.key(i);
       //    let stockage = form.getItem(currentKey);

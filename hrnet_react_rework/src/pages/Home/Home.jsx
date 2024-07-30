@@ -161,7 +161,7 @@ function Home() {
                            ...formValues,
                            ["birthDay"]: date,
                         });
-                        console.log("BIRTH", date);
+                        // console.log("BIRTH", date);
                      }}
                      dateFormat="dd/MM/yyyy"
                      format="dd-MM-y"
@@ -182,7 +182,7 @@ function Home() {
                            ...formValues,
                            ["startDay"]: date,
                         });
-                        console.log("START", date);
+                        // console.log("START", date);
                      }}
                      dateFormat="dd/MM/yyyy"
                      format="dd-MM-y"

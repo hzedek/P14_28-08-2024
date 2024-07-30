@@ -27,7 +27,6 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 // EXPORTS : store & persistor
 export const store = configureStore({
    reducer: persistedReducer,
-
    // REMOVE DEFAULT ERROR CHECKER :
    middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
