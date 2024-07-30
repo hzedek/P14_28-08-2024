@@ -7,18 +7,17 @@ import { AgGridReact } from "ag-grid-react"; // React Data Grid Component
 import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the Data Grid
 import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the Data Grid
 ////////////////////////////////////////////////////////////////////////////
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { getForm } from "../../redux/selectors.js";
-import { setForm } from "../../redux/slices/formulaire/formulaireSlice.js";
-//
 
 function Employees() {
+   // Récupération des Data Redux
    const form = useSelector(getForm);
 
    // Initial Values
    const [finalImport, setFinalImport] = useState();
 
-   // Loading Initial Values
+   // Initial Loading lors de l'accès au tableau
    useEffect(() => {
       if (finalImport === undefined) {
          masterFiltering();
@@ -27,87 +26,17 @@ function Employees() {
 
    // Function for Data filtering
    function masterFiltering() {
-      let stockageLocal = [];
+      let stockageLocal = []; // Empty Array
 
-      console.log(form);
-
+      // Chaque élément du "form" est "pushed" ici dans "stockageLocal"...
       form.forEach((item) => {
-         console.log(item);
          stockageLocal.push(item);
       });
-
-      // for (let i = 0; i < form; i++) {
-      //    let currentKey = form.key(i);
-      //    let stockage = form.getItem(currentKey);
-      //    let stockageParsed = JSON.parse(stockage);
-      //    stockageLocal.push(stockageParsed);
-      //    console.log(stockageParsed);
-      // }
-
-      // let test = new Date();
-      // console.log("moment", moment(test).format("DD/MM/YYYY"));
-      // if (item.birthDay) {
-      //    item.birthDay = moment(item.birthDay).format("DD-MM-YYYY");
-      //    // console.log(item.birthDay);
-      //    // item.birthDay = new Date(item.birthDay).toLocaleDateString();
-      //    // let edited = new Date("fr-FR");
-      //    // edited = new Date(item.birthDay).toLocaleDateString();
-      //    // item.birthDay = edited;
-      //    // console.log("OUIIII : Birthday", edited);
-      //    // stockageLocal.push(item.birthDay);
-      //    // let editedDate = item.birthDay.toLocaleDateString()
-      //    // stockageLocal
-      //    // item.birthDay = new Date(item.birthDay).toLocaleDateString();
-      // }
-      // if (item.startDay) {
-      //    // console.log(item.startDay);
-      //    // item.startDay = new Date(item.startDay).toLocaleDateString();
-      //    // let edited2 = new Date("fr-FR");
-      //    // edited2 = new Date(item.startDay).toLocaleDateString();
-      //    // item.birthDay = edited2;
-      //    // console.log("OUIIII : Start", edited2);
-      //    // stockageLocal.push(item.startDay);
-      //    // item.startDay = new Date(item.startDay).toLocaleDateString();
-      // }
-      // if (typeof item.department === "object") {
-      //    item.department = item.department.value;
-      // }
-
-      // stockageLocal.push(form);
-
-      // for (let i = 0; i < form.length; i++) {
-      //    let currentKey = form.key(i);
-      //    let stockage = form.getItem(currentKey);
-      //    let stockageParsed = JSON.parse(stockage);
-      //    stockageLocal.push(stockageParsed);
-      // }
-      // // Edit birthDay & startDay format of values + Choose department correct format
-      ////////////////////////////////////////////////////////////////////////////////////
-      // stockageLocal.forEach((item) => {
-      //    if (item.birthDay) {
-      //       let edited = new Date("fr-FR");
-      //       edited = new Date(item.birthDay).toLocaleDateString();
-      //       item.birthDay = edited;
-      //       console.log("OUIIII : Birthday", edited);
-      //    }
-      //    if (item.startDay) {
-      //       let edited2 = new Date("fr-FR");
-      //       edited2 = new Date(item.startDay).toLocaleDateString();
-      //       item.birthDay = edited2;
-      //       console.log("OUIIII : Start", edited2);
-      //    }
-      //    if (typeof item.department === "object") {
-      //       item.department = item.department.value;
-      //    }
-      //    // console.log("item", item.birthDay);
-      // });
-      // console.log("birthday", stockageLocal[0].birthDay);
-      // console.log(form);
+      // ...puis renvoyé à "stockageLocal"
       setFinalImport(stockageLocal);
-      // let stockageLocal = [];
-      // console.log("form", form);
    }
    /////////////////////////////////////////////////////////////////////////////////
+   // SETUP DE AG-GRID : Barre de Recherche Globale
    const gridRef = useRef();
    const onSearchFilterContentChanged = useCallback(() => {
       gridRef.current.api.setGridOption(
@@ -115,8 +44,9 @@ function Employees() {
          document.getElementById("filter-text-box").value
       );
    });
-
    /////////////////////////////////////////////////////////////////////////////////
+   // SETUP DE AG-GRID : Elements Primaires
+   // PS : Les USESTATES sont attendus comme tels par AG-GRID
    const GridTable = () => {
       // Row Data: The data to be displayed
       const [rowData, setRowData] = useState(finalImport);
@@ -133,10 +63,12 @@ function Employees() {
          { headerName: "Zip Code", field: "addressZipcode", flex: 1 },
       ]);
 
+      // Nombre d'éléments par Page du Tableau
       const paginationPageSizeSelector = useMemo(() => {
          return [5, 10, 25, 50, 100];
       }, []);
 
+      // Premier Return : celui du Tableau
       return (
          <div className="aggrid-wrapper">
             <div className="aggrid-search-header">
@@ -144,7 +76,6 @@ function Employees() {
                <input
                   type="text"
                   id="filter-text-box"
-                  // placeholder="Filter..."
                   onInput={onSearchFilterContentChanged}
                />
             </div>
@@ -164,9 +95,8 @@ function Employees() {
          </div>
       );
    };
-   /////////////////////////////////////////////////////////////////////////////////
-   /////////////////////////////////////////////////////////////////////////////////
 
+   // Return Final, Tableau inclus
    return (
       <>
          <Header actualPage={"Home"} />
