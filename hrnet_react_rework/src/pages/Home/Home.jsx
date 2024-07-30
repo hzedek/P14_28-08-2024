@@ -9,16 +9,15 @@ import "react-datepicker/dist/react-datepicker.css";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 /////////////////////////////////////////////////////////////////////////////////
-// NPM LEWISMODAL
+// VERSION NPM LEWISMODAL
 import LewisModal, { openModal } from "lewismodal";
-// ------------------------------------------------
-// LOCAL LEWISMODAL
+/////////////////////////////////////////////////////////////////////////////////
+// VERSION LOCAL LEWISMODAL
 // import LewisModal, {
 //    openModal,
 // } from "../../../../../LewisModal/src/components/Modal.jsx";
 ////////////////////////////////////////////////////////////////////////////
-// REDUX //
-////////////////////////////////////////////////////////////////////////////
+// REDUX :
 import { useDispatch } from "react-redux";
 import { setForm } from "../../redux/slices/formulaire/formulaireSlice.js";
 
@@ -52,11 +51,11 @@ function Home() {
    /////////////////////////////////////////////////////////////////////////
    // FORM VALUES : valeurs ajoutées au formulaire
    const [formValues, setFormValues] = useState(initialValues);
-   /////////////////////////////////////////////////////////////////////////
-   // EDIT FORM VALUES ONCHANGE() : à chaque edit d'un champ, met à jour le formulaire
+
+   // EDIT FORM VALUES ONCHANGE() : Mise à jour à chaque changement dans un input
    const handleInputChange = (e) => {
       e.preventDefault();
-      // Attributs + Update des valeurs visées dans le formulaire
+      // Attributs + Update des valeurs visées dans le formulaire :
       const { name, value } = e.target;
       setFormValues({
          ...formValues,
@@ -68,22 +67,16 @@ function Home() {
    const etatsunisNameOnly = states.map((state) => [[state.name]]);
    const etatsunisAbbrOnly = states.map((state) => [[state.abbreviation]]);
    // ETAT CHOISI DANS LA LISTE :
-   const [selectedState, setSelectedState] = useState(); // Valeur du CHOIX dans la liste
+   const [selectedState, setSelectedState] = useState(); // Valeur du CHOIX dans la liste déroulante
    const [stateName, setStateName] = useState(); // Valeur du champ "VALUE" par le useState ci-dessus ^
    // REFRESH DU CHOIX D'ETAT
    useEffect(() => {
       return setStateName(selectedState);
    }, []);
+
    /////////////////////////////////////////////////////////////////////////
-   /////////////////////////////////////////////////////////////////////////
-   // ENVOI DU FORMULAIRE VIA SETUP EN LOCALSTORAGE
-   const [localValue, setLocalValue] = useState(localStorage.length);
+   // ENVOI DU FORMULAIRE DEPUIS REDUX
    const submitForm = () => {
-      setLocalValue(localValue + 1);
-      // localStorage.setItem(
-      //    `Form Result n°${localValue}`,
-      //    JSON.stringify(formValues)
-      // );
       dispatch(setForm(formValues));
       console.log("---FINAL FORM---", formValues);
    };
@@ -93,11 +86,9 @@ function Home() {
          <Header actualPage={"View Employees"} />
          <main>
             {/* NPM LEWISMODAL */}
-            {/* <LewisModal /> */}
-            {/* ------------------------- */}
-            {/* ------------------------- */}
-            {/* ------------------------- */}
+            <LewisModal />
             {/* NPM LEWISMODAL CUSTOMIZED */}
+            {/*
             <LewisModal
                modalMessage={"Fiche Client Réalisée !"}
                modalFontSize={60}
@@ -110,6 +101,7 @@ function Home() {
                mRed={200}
                mOpacity={66}
             />
+            */}
 
             <section className="WHealth-FormSection">
                <h1 className="WHealth-Title">Create Employee</h1>
@@ -152,7 +144,6 @@ function Home() {
                            ...formValues,
                            ["birthDay"]: date,
                         });
-                        // console.log("BIRTH", date);
                      }}
                      dateFormat="dd/MM/yyyy"
                      format="dd-MM-y"
@@ -173,7 +164,6 @@ function Home() {
                            ...formValues,
                            ["startDay"]: date,
                         });
-                        // console.log("START", date);
                      }}
                      dateFormat="dd/MM/yyyy"
                      format="dd-MM-y"
