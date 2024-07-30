@@ -17,23 +17,14 @@ import LewisModal, { openModal } from "lewismodal";
 //    openModal,
 // } from "../../../../../LewisModal/src/components/Modal.jsx";
 ////////////////////////////////////////////////////////////////////////////
-import { useSelector, useDispatch } from "react-redux";
-import { getForm } from "../../redux/selectors.js";
-import { setForm } from "../../redux/slices/formulaire/formulaireSlice.js";
+// REDUX //
 ////////////////////////////////////////////////////////////////////////////
+import { useDispatch } from "react-redux";
+import { setForm } from "../../redux/slices/formulaire/formulaireSlice.js";
 
 function Home() {
-   // Setup SELECTOR du form
-
-   // console.log("form test", form);
-
-   /**
-    * USESELECTOR : Un simple "fetch" de data
-    *
-    * USEDISPATCH : Applique la fonction
-    * 1) const dispatch = useDispatch();
-    * 2) dispatch(setForm(xx));
-    */
+   //////////////////////////////////////////////////////////////////////////////////
+   // Dispatch pour utiliser "setForm" depuis le Slice ci-dessus (formulaireSlice.js)
    const dispatch = useDispatch();
 
    /////////////////////////////////////////////////////////////////////////
@@ -81,7 +72,6 @@ function Home() {
    const [stateName, setStateName] = useState(); // Valeur du champ "VALUE" par le useState ci-dessus ^
    // REFRESH DU CHOIX D'ETAT
    useEffect(() => {
-      // console.log("update of SelectedState: ", selectedState);
       return setStateName(selectedState);
    }, []);
    /////////////////////////////////////////////////////////////////////////
@@ -158,11 +148,6 @@ function Home() {
                      className="HrnetDatePickers"
                      selected={formValues.birthDay}
                      onChange={(date) => {
-                        // let formatingDate = moment(date)
-                        //    .format("DD-MM-YYYY")
-                        //    .toString();
-                        // // .format("YYYY-MM-DD")
-                        // // .toString();
                         setFormValues({
                            ...formValues,
                            ["birthDay"]: date,
@@ -184,11 +169,6 @@ function Home() {
                      className="HrnetDatePickers"
                      selected={formValues.startDay}
                      onChange={(date) => {
-                        // let formatingDate = moment(date)
-                        //    .format("DD-MM-YYYY")
-                        //    .toString();
-                        // // .format("YYYY-MM-DD")
-                        // // .toString();
                         setFormValues({
                            ...formValues,
                            ["startDay"]: date,

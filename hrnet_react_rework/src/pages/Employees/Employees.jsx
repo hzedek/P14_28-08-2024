@@ -11,7 +11,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { getForm } from "../../redux/selectors.js";
 import { setForm } from "../../redux/slices/formulaire/formulaireSlice.js";
 //
-import moment from "moment";
 
 function Employees() {
    const form = useSelector(getForm);
@@ -28,44 +27,51 @@ function Employees() {
 
    // Function for Data filtering
    function masterFiltering() {
-      // Push Data from localStorage to this Array
       let stockageLocal = [];
-      // console.log("form brut", console.log(form.birthDay));
-      // console.log("test birth", form);
 
-      // console.log("localstorage", stockageLocal[0]);
+      console.log(form);
 
       form.forEach((item) => {
-         let test = new Date();
-         console.log("moment", moment(test).format("DD/MM/YYYY"));
-         if (item.birthDay) {
-            item.birthDay = moment(item.birthDay).format("DD-MM-YYYY");
-            // console.log(item.birthDay);
-            // item.birthDay = new Date(item.birthDay).toLocaleDateString();
-            // let edited = new Date("fr-FR");
-            // edited = new Date(item.birthDay).toLocaleDateString();
-            // item.birthDay = edited;
-            // console.log("OUIIII : Birthday", edited);
-            // stockageLocal.push(item.birthDay);
-            // let editedDate = item.birthDay.toLocaleDateString()
-            // stockageLocal
-            // item.birthDay = new Date(item.birthDay).toLocaleDateString();
-         }
-         // if (item.startDay) {
-         //    // console.log(item.startDay);
-         //    // item.startDay = new Date(item.startDay).toLocaleDateString();
-         //    // let edited2 = new Date("fr-FR");
-         //    // edited2 = new Date(item.startDay).toLocaleDateString();
-         //    // item.birthDay = edited2;
-         //    // console.log("OUIIII : Start", edited2);
-         //    // stockageLocal.push(item.startDay);
-         //    // item.startDay = new Date(item.startDay).toLocaleDateString();
-         // }
-         if (typeof item.department === "object") {
-            item.department = item.department.value;
-         }
+         console.log(item);
          stockageLocal.push(item);
       });
+
+      // for (let i = 0; i < form; i++) {
+      //    let currentKey = form.key(i);
+      //    let stockage = form.getItem(currentKey);
+      //    let stockageParsed = JSON.parse(stockage);
+      //    stockageLocal.push(stockageParsed);
+      //    console.log(stockageParsed);
+      // }
+
+      // let test = new Date();
+      // console.log("moment", moment(test).format("DD/MM/YYYY"));
+      // if (item.birthDay) {
+      //    item.birthDay = moment(item.birthDay).format("DD-MM-YYYY");
+      //    // console.log(item.birthDay);
+      //    // item.birthDay = new Date(item.birthDay).toLocaleDateString();
+      //    // let edited = new Date("fr-FR");
+      //    // edited = new Date(item.birthDay).toLocaleDateString();
+      //    // item.birthDay = edited;
+      //    // console.log("OUIIII : Birthday", edited);
+      //    // stockageLocal.push(item.birthDay);
+      //    // let editedDate = item.birthDay.toLocaleDateString()
+      //    // stockageLocal
+      //    // item.birthDay = new Date(item.birthDay).toLocaleDateString();
+      // }
+      // if (item.startDay) {
+      //    // console.log(item.startDay);
+      //    // item.startDay = new Date(item.startDay).toLocaleDateString();
+      //    // let edited2 = new Date("fr-FR");
+      //    // edited2 = new Date(item.startDay).toLocaleDateString();
+      //    // item.birthDay = edited2;
+      //    // console.log("OUIIII : Start", edited2);
+      //    // stockageLocal.push(item.startDay);
+      //    // item.startDay = new Date(item.startDay).toLocaleDateString();
+      // }
+      // if (typeof item.department === "object") {
+      //    item.department = item.department.value;
+      // }
 
       // stockageLocal.push(form);
 

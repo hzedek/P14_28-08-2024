@@ -4,9 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Employees from "./pages/Employees/Employees";
 import "./index.scss";
-// REDUX Update
-// import { configureStore } from "redux";
-// import { configureStore } from "@reduxjs/toolkit";
+// REDUX SETUP
 import { Provider } from "react-redux";
 import { store, persistor } from "./redux/store.js";
 import { PersistGate } from "redux-persist/integration/react";

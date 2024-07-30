@@ -20,11 +20,9 @@ const rootReducer = combineReducers({
 ///////////////////////////////////////
 // SETUP STORE & PERSISTOR + EXPORTS //
 ///////////////////////////////////////
+const persistedReducer = persistReducer(persistConfig, rootReducer); // PERSIST REDUCER
 
-// PERSIST REDUCER
-const persistedReducer = persistReducer(persistConfig, rootReducer);
-
-// EXPORTS : store & persistor
+// EXPORTS : Store + Persistor
 export const store = configureStore({
    reducer: persistedReducer,
    // REMOVE DEFAULT ERROR CHECKER :
