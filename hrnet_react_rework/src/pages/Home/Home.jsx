@@ -20,6 +20,7 @@ import LewisModal, { openModal } from "lewismodal";
 import { useSelector, useDispatch } from "react-redux";
 import { getForm } from "../../redux/selectors.js";
 import { setForm } from "../../redux/slices/formulaire/formulaireSlice.js";
+////////////////////////////////////////////////////////////////////////////
 
 function Home() {
    // Setup SELECTOR du form
@@ -157,6 +158,11 @@ function Home() {
                      className="HrnetDatePickers"
                      selected={formValues.birthDay}
                      onChange={(date) => {
+                        // let formatingDate = moment(date)
+                        //    .format("DD-MM-YYYY")
+                        //    .toString();
+                        // // .format("YYYY-MM-DD")
+                        // // .toString();
                         setFormValues({
                            ...formValues,
                            ["birthDay"]: date,
@@ -178,6 +184,11 @@ function Home() {
                      className="HrnetDatePickers"
                      selected={formValues.startDay}
                      onChange={(date) => {
+                        // let formatingDate = moment(date)
+                        //    .format("DD-MM-YYYY")
+                        //    .toString();
+                        // // .format("YYYY-MM-DD")
+                        // // .toString();
                         setFormValues({
                            ...formValues,
                            ["startDay"]: date,

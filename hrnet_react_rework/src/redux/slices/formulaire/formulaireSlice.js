@@ -37,7 +37,8 @@ const formulaireSlice = createSlice({
       // },
       setForm: (state, action) => {
          // state = initialState;
-
+         let test = action.payload.birthDay;
+         console.log("hey", test.toLocalDateString());
          return [...state, action.payload];
       },
       // setForm: (state, action) => {

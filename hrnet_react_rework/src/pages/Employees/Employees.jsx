@@ -10,6 +10,8 @@ import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied
 import { useSelector, useDispatch } from "react-redux";
 import { getForm } from "../../redux/selectors.js";
 import { setForm } from "../../redux/slices/formulaire/formulaireSlice.js";
+//
+import moment from "moment";
 
 function Employees() {
    const form = useSelector(getForm);
@@ -34,7 +36,10 @@ function Employees() {
       // console.log("localstorage", stockageLocal[0]);
 
       form.forEach((item) => {
+         let test = new Date();
+         console.log("moment", moment(test).format("DD/MM/YYYY"));
          if (item.birthDay) {
+            item.birthDay = moment(item.birthDay).format("DD-MM-YYYY");
             // console.log(item.birthDay);
             // item.birthDay = new Date(item.birthDay).toLocaleDateString();
             // let edited = new Date("fr-FR");
@@ -46,16 +51,16 @@ function Employees() {
             // stockageLocal
             // item.birthDay = new Date(item.birthDay).toLocaleDateString();
          }
-         if (item.startDay) {
-            // console.log(item.startDay);
-            // item.startDay = new Date(item.startDay).toLocaleDateString();
-            // let edited2 = new Date("fr-FR");
-            // edited2 = new Date(item.startDay).toLocaleDateString();
-            // item.birthDay = edited2;
-            // console.log("OUIIII : Start", edited2);
-            // stockageLocal.push(item.startDay);
-            // item.startDay = new Date(item.startDay).toLocaleDateString();
-         }
+         // if (item.startDay) {
+         //    // console.log(item.startDay);
+         //    // item.startDay = new Date(item.startDay).toLocaleDateString();
+         //    // let edited2 = new Date("fr-FR");
+         //    // edited2 = new Date(item.startDay).toLocaleDateString();
+         //    // item.birthDay = edited2;
+         //    // console.log("OUIIII : Start", edited2);
+         //    // stockageLocal.push(item.startDay);
+         //    // item.startDay = new Date(item.startDay).toLocaleDateString();
+         // }
          if (typeof item.department === "object") {
             item.department = item.department.value;
          }
