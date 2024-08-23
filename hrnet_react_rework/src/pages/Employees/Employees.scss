@@ -1,0 +1,49 @@
+.WHealth-GridSection {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   background-color: rgba(215, 235, 180);
+   padding: 0 15px 10px;
+   width: 90%;
+   border-radius: 10px;
+   border-style: solid;
+   border-width: 1px;
+   border-color: rgb(50, 50, 0);
+}
+
+#selectTableLength {
+   position: absolute;
+   margin-top: 10px;
+   margin-left: 5px;
+   z-index: 1;
+}
+
+.employees-grid {
+   width: 100%;
+}
+
+.aggrid-search-header {
+   font-size: 15px;
+   background-color: white;
+   padding: 5px 10px;
+   border-radius: 5px;
+   border: 1px solid rgb(200, 200, 200);
+   margin-bottom: -1px;
+}
+
+#filter-text-box {
+   border-color: darkgray;
+}
+
+.gridjs-search::before {
+   content: "Search: ";
+}
+.gridjs-search {
+   float: right !important;
+}
+.gridjs-search-input {
+   width: 200px !important;
+   font-style: italic;
+   letter-spacing: 1px;
+   border-color: black !important;
+}
