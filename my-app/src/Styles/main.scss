@@ -1,0 +1,18 @@
+$primary-color: #4CAF50;
+$secondary-color: #333;
+$background-color: #f4f4f4;
+$font-family: 'Arial', sans-serif;
+$border-radius: 5px;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: $font-family;
+    background-color: $background-color;
+    color: $secondary-color;
+  }
+  

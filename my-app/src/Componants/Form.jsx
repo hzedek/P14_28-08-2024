@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import states from "./states";
+import "../Styles/styles.css"
 
 function Form() {
-  console.log(states);
-
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -27,11 +26,12 @@ function Form() {
     e.preventDefault();
     console.log("Form data:", formData);
   };
+
   return (
     <div className="container">
       <h2>Create Employee</h2>
       <form action="#" id="create-employee" onSubmit={handleSubmit}>
-        <label htmlFor="first-name">First Name</label>
+        <label htmlFor="firstName">First Name</label>
         <input
           onChange={handleChange}
           type="text"
@@ -40,7 +40,7 @@ function Form() {
           value={formData.firstName}
         />
 
-        <label htmlFor="last-name">Last Name</label>
+        <label htmlFor="lastName">Last Name</label>
         <input
           onChange={handleChange}
           type="text"
@@ -49,7 +49,7 @@ function Form() {
           value={formData.lastName}
         />
 
-        <label htmlFor="date-of-birth">Date of Birth</label>
+        <label htmlFor="dateOfBirth">Date of Birth</label>
         <input
           onChange={handleChange}
           id="dateOfBirth"
@@ -58,7 +58,7 @@ function Form() {
           value={formData.dateOfBirth}
         />
 
-        <label htmlFor="start-date">Start Date</label>
+        <label htmlFor="startDate">Start Date</label>
         <input
           id="startDate"
           value={formData.startDate}
@@ -98,9 +98,9 @@ function Form() {
             ))}
           </select>
 
-          <label htmlFor="zip-code">Zip Code</label>
+          <label htmlFor="zipCode">Zip Code</label>
           <input
-            id="zip-code"
+            id="zipCode"
             name="zipCode"
             type="number"
             value={formData.zipCode}
