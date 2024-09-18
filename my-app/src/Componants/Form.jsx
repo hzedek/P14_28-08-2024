@@ -1,18 +1,20 @@
-import React, { useState } from "react";
-import states from "./states";
-import "../Styles/styles.css"
+import React, { useState, useContext } from 'react';
+import { EmployeeContext } from './EmployeeContext';
+import states from './states';
+import '../Styles/styles.css';
 
 function Form() {
+  const { dispatch } = useContext(EmployeeContext);
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    dateOfBirth: "",
-    startDate: "",
-    street: "",
-    city: "",
-    state: "",
-    zipCode: "",
-    department: "",
+    firstName: '',
+    lastName: '',
+    dateOfBirth: '',
+    startDate: '',
+    street: '',
+    city: '',
+    state: '',
+    zipCode: '',
+    department: '',
   });
 
   const handleChange = (e) => {
@@ -24,13 +26,27 @@ function Form() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form data:", formData);
+    dispatch({
+      type: 'ADD_EMPLOYEE',
+      payload: formData,
+    });
+    setFormData({
+      firstName: '',
+      lastName: '',
+      dateOfBirth: '',
+      startDate: '',
+      street: '',
+      city: '',
+      state: '',
+      zipCode: '',
+      department: '',
+    });
   };
 
   return (
     <div className="container">
       <h2>Create Employee</h2>
-      <form action="#" id="create-employee" onSubmit={handleSubmit}>
+      <form id="create-employee" onSubmit={handleSubmit}>
         <label htmlFor="firstName">First Name</label>
         <input
           onChange={handleChange}

@@ -21,3 +21,17 @@ label {
 .address {
     margin-top: 10px;
 }
+
+.containerEmployeePage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.table{
+    width: 90%;
+    margin-top: 30px;
+}

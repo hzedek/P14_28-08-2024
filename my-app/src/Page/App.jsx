@@ -1,6 +1,6 @@
-import "./app.css"
-import Form from "./Componants/Form";
-import Header from "./Componants/Header";
+import "../Styles/app.css"
+import Form from "../Componants/Form";
+import Header from "../Componants/Header";
 
 function App() {
   return (

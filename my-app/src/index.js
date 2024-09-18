@@ -3,23 +3,22 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 // import Footer from "./Componants/Footer";
 // import Error404 from "./Pages/404";
-import App from "./App";
+import App from "./Page/App";
 import EmployeeList from "./Page/employeeList";
-
-
-
-
+import { EmployeeProvider } from "./Componants/EmployeeContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Router>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/employee-list" element={<EmployeeList />} />
-        {/* <Route path="*" element={<Error404 />} /> */}
-      </Routes>
-    </Router>
+    <EmployeeProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="/employee-list" element={<EmployeeList />} />
+          {/* <Route path="*" element={<Error404 />} /> */}
+        </Routes>
+      </Router>
+    </EmployeeProvider>
   </React.StrictMode>
 );
 
