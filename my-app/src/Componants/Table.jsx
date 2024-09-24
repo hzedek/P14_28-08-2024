@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 
 function Table() {
   const { employees } = useContext(EmployeeContext);
-    console.log(employees);
-    
+  console.log("Employees in Table component:", employees);
+
   return (
     <div id="employee-div" className="containerEmployeePage">
       <h1>Current Employees</h1>

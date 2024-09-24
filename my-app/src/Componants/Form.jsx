@@ -1,10 +1,12 @@
 import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom'; 
 import { EmployeeContext } from './EmployeeContext';
 import states from './states';
 import '../Styles/styles.css';
 
 function Form() {
   const { dispatch } = useContext(EmployeeContext);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -30,6 +32,10 @@ function Form() {
       type: 'ADD_EMPLOYEE',
       payload: formData,
     });
+    
+    // Après le dispatch, redirige l'utilisateur vers la page EmployeeList
+    navigate('/employee-list');
+
     setFormData({
       firstName: '',
       lastName: '',

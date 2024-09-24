@@ -6,6 +6,7 @@ const initialState = {
 
 // Reducer function to manage state
 const employeeReducer = (state, action) => {
+  console.log("Action received in reducer:", action); 
   switch (action.type) {
     case 'ADD_EMPLOYEE':
       return {
@@ -23,7 +24,7 @@ export const EmployeeContext = createContext();
 // Create provider component
 export const EmployeeProvider = ({ children }) => {
   const [state, dispatch] = useReducer(employeeReducer, initialState);
-console.log(initialState);
+console.log("Employees in context:",state.employees);
 
   return (
     <EmployeeContext.Provider value={{ employees: state.employees, dispatch }}>
