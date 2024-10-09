@@ -7,7 +7,6 @@ function App() {
     <div>
         <Header/>
         <Form />
-        {/* <div id="confirmation" class="modal">Employee Created!</div> */}
     </div>
   );
 }
