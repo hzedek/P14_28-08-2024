@@ -7,7 +7,7 @@ function Table() {
   const { employees } = useContext(EmployeeContext);
   const [searchText, setSearchText] = useState('');
 
-  // Columns definition for DataGrid
+  // Columns for DataGrid
   const columns = [
     { field: 'firstName', headerName: 'First Name', width: 150 },
     { field: 'lastName', headerName: 'Last Name', width: 150 },
@@ -36,8 +36,6 @@ function Table() {
   return (
     <div id="employee-div" className="containerEmployeePage">
       <h1>Current Employees</h1>
-
-      {/* Search input to filter employees */}
       <input
         type="text"
         placeholder="Search employees..."
@@ -46,7 +44,6 @@ function Table() {
         style={{ marginBottom: '20px', padding: '10px', width: '300px' }}
       />
 
-      {/* DataGrid to display the filtered employees */}
       <div style={{ height: 400, width: '100%' }}>
         <DataGrid
           rows={rows}

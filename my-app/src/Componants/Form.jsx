@@ -32,6 +32,7 @@ const Form = () => {
 
     const handleCloseModal = () => {
         setIsModalOpen(false);
+        //Apres que le module se ferme, navigation vers la page '/employee-list''
         navigate('/employee-list'); 
     };
 

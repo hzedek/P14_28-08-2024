@@ -5,8 +5,8 @@ import Table from "../Componants/Table";
 function EmployeeList() {
   return (
     <div>
-        <Header/>
-    <Table/>
+      <Header />
+      <Table />
     </div>
   );
 }
