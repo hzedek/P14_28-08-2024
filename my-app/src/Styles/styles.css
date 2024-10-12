@@ -11,7 +11,7 @@ body {
 }
 
 nav {
-  background-color: #4CAF50;
+  background-color: #317d34;
   padding: 1rem;
   display: flex;
   flex-direction: column;
@@ -44,7 +44,7 @@ nav .header-container a:hover {
 }
 .container h2 {
   text-align: center;
-  color: #4CAF50;
+  color: #317d34;
   margin-bottom: 1.5rem;
 }
 .container form {
@@ -65,7 +65,7 @@ nav .header-container a:hover {
 }
 .container form button {
   padding: 0.75rem;
-  background-color: #4CAF50;
+  background-color: #317d34;
   color: white;
   border: none;
   border-radius: 5px;
